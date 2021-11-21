@@ -1,10 +1,11 @@
 /*************************************************************************
                            Catalogue  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : $15/11/2021$
+    copyright            : (C) $2021$ par $tdang,esoulier$
+    e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
+
 
 //---------- Interface de la classe <Catalogue> (fichier Catalogue.h) ----------------
 #if ! defined ( Catalogue_H )
@@ -29,15 +30,16 @@ class Catalogue
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+
+    void Menu ();
     // Mode d'emploi :
-    //
+    //	Faire apparaître le menu qui permet a l'utilisateur d'avoir l'acces
+    //	aux services fournis par le catalogue
     // Contrat :
     //
-    void Afficher(void) const;
 
 //-------------------------------------------- Constructeurs - destructeur
-    Catalogue (int test);
+    Catalogue ();
     // Mode d'emploi :
     //
     // Contrat :
@@ -54,10 +56,31 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
 
+    void Afficher(void) const;
+    // Mode d'emploi :
+    // Faire apparaître le contenu du catalogue
+    // Contrat :
+    //
+
+    /*void Rechercher() const;
+    // Mode d'emploi :
+    // Service qui permet de rechercher un seul trajet (simple ou compose)
+    // entre deux villes,
+    // Contrat :
+    
+    void AjouterTrajetSimple();
+    // Mode d'emploi :
+    // Service qui permet de ajouter un trajet simple entre deux villes,
+    // Contrat :
+
+    void AjouterTrajetCompose();
+     // Mode d'emploi :
+    // Service qui permet de ajouter un trajet compose entre deux villes,
+    // Contrat :
+*/
+
 //----------------------------------------------------- Attributs protégés
     ListeTrajet ListeT;
-    int testl;
-
 };
 
 //-------------------------------- Autres définitions dépendantes de <Catalogue>
