@@ -1,10 +1,11 @@
 /*************************************************************************
-                             -Trajet  description
+                           Trajet  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : $15/11/2021$
+    copyright            : (C) $2021$ par $tdang,esoulier$
+    e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
+
 
 //---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
 #if ! defined ( Trajet_H )
