@@ -17,7 +17,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 #include "TrajetSimple.h"
-//#include "TrajetCompose.h"
+#include "TrajetCompose.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -55,7 +55,7 @@ void Catalogue::Menu()
                 	AjouterTrajetSimple();
                 	break;
             	case '3':
-                	//AjouterTrajetCompose();
+                	AjouterTrajetCompose();
                 	break;
             	case '4':
                 	cout << "Au revoir..." << endl;
@@ -115,11 +115,41 @@ void Catalogue::AjouterTrajetSimple()
     char * Nom=new char[50];
     cout << "Donnez le nom du trajet : " << endl;
     cin >> Nom;
-	TrajetSimple *nouvelTraj = new TrajetSimple(VD,VA,MT,Nom);
+	Trajet *nouvelTraj = new TrajetSimple(VD,VA,MT,Nom);
 	ListeT.AjouterElem(nouvelTraj);
 	delete [] VD;
 	delete [] VA;
 	delete [] MT;
 	delete [] Nom;
+}
+
+void Catalogue::AjouterTrajetCompose()
+{
+	char * NomC=new char[50];
+    cout << "Donnez le nom du trajet compose : " << endl;
+    cin >> NomC;
+    TrajetCompose *nouvelTrajComp = new TrajetCompose(NomC);
+    char input = '0';
+    do
+    {
+    	cout << "Tapez 0 pour entrer un sous-trajet." << endl;
+    	cout << "Tapez 1 pour terminer." << endl;
+    	cin >> input;
+    	switch (input)
+        {	
+            case '0':
+            	nouvelTrajComp->AjouterTrajetSimple();
+            	break;
+            case '1':
+            	cout << "Au revoir..." << endl;
+                break;
+        	default:
+            cout << "Choix invalide. Choisir l'une des valeurs entre 0 et 1" << endl;
+        }
+
+    } while (input != '1');
+
+	ListeT.AjouterElem(nouvelTrajComp);
+	delete [] NomC;
 }
 

@@ -32,6 +32,9 @@ using namespace std;
 
 void TrajetCompose::Afficher() const
 {
+    cout << "Nom du Trajet Compose : " << nomDeTrajet << endl;
+    cout<< "Le trajet compose contient actuellement "<<sousTrajets.getSize();
+    cout<< " trajet" << (sousTrajets.getSize()> 1 ?"s." :".")<<endl;
     for (unsigned int i = 0; i<sousTrajets.getSize();i++)
     {
         sousTrajets.AccederElem(i)->Afficher();

@@ -23,7 +23,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void ListeTrajet::AjouterElem (const TrajetSimple* unTrajet)
+void ListeTrajet::AjouterElem (Trajet* unTrajet)
 // Algorithme :
 // Allocation mémoire d'un nouvel maillon et copie en profondeur d'unTrajet
 // Insertion en debut de liste
@@ -32,8 +32,8 @@ void ListeTrajet::AjouterElem (const TrajetSimple* unTrajet)
 	Maillon *nouvelMaill = new Maillon();
 	nouvelMaill->setSuivNull();
 	//copie en profondeur
-	TrajetSimple *nouvelTraj = new TrajetSimple(*unTrajet);
-	nouvelMaill->setTrajet(nouvelTraj);
+	//Trajet *nouvelTraj = new TrajetSimple(unTrajet->getVilleDepart(),unTrajet->getVilleArrive(),unTrajet->getMoyenDeTransport(),unTrajet->getNomTrajet());
+	nouvelMaill->setTrajet(unTrajet);
 
 	//Insertion en tete
 	if (racine == NULL)
@@ -67,32 +67,6 @@ const Trajet* ListeTrajet::AccederElem (unsigned int pos) const
 		return courant->getTrajet();
 	}
 } //--Fin de methode AccederElem
-
-/*void ListeTrajet::AjouterElemCompo (const TrajetCompose* unTrajet)
-// Algorithme :
-// Allocation mémoire d'un nouvel maillon et copie en profondeur d'unTrajet
-// Insertion en debut de liste
-{
-	//Allocation de memoire
-	Maillon *nouvelMaill = new Maillon();
-	nouvelMaill->setSuivNull();
-	//copie en profondeur
-	TrajetCompose *nouvelTraj = new TrajetCompose(*unTrajet);
-	nouvelMaill->setTrajet(nouvelTraj);
-
-	//Insertion en tete
-	if (racine == NULL)
-	{
-		racine = nouvelMaill;
-	}
-	else
-	{
-		nouvelMaill->setSuiv(racine);
-		racine = nouvelMaill;
-	}
-	
-	taille++;
-}	//---Fin de methode AjouterElem*/
 
 
 unsigned int ListeTrajet::getSize () const

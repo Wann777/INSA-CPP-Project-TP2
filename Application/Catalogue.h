@@ -73,11 +73,10 @@ protected:
     // Service qui permet de ajouter un trajet simple entre deux villes,
     // Contrat :
 
-    /*void AjouterTrajetCompose();
+    void AjouterTrajetCompose();
      // Mode d'emploi :
     // Service qui permet de ajouter un trajet compose entre deux villes,
     // Contrat :
-*/
 
 //----------------------------------------------------- Attributs protégés
     ListeTrajet ListeT;

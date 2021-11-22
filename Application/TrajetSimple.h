@@ -39,7 +39,6 @@ public:
 
     void Afficher(void) const;
 
-
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajetSimple );
     // Mode d'emploi (constructeur de copie) :
