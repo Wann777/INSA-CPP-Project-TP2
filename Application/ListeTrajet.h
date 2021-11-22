@@ -12,6 +12,8 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Maillon.h"
+#include "Trajet.h"
+#include "TrajetSimple.h"
 
 //------------------------------------------------------------------ Types
 //class Trajet;
@@ -44,6 +46,7 @@ public:
     // copie en profondeur du trajet à ajouter
     // Contrat :
     // unTrajet pointe vers un Trajet valide
+    //void AjouterElemCompo (const TrajetCompose* unTrajet)
     const Trajet* AccederElem (unsigned int pos) const;
    // Mode d'emploi :
     // Retourne un pointeur vers le Trajet a la position pos  de la liste

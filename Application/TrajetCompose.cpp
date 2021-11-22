@@ -30,12 +30,34 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void TrajetSimple::Afficher() const
+void TrajetCompose::Afficher() const
 {
-    cout << "Ville de Depart : " << VilleDepart << endl;
-    cout << "Ville d'Arrive : " << VilleArrive << endl;
-    cout << "Moyen de transport : " << MoyenDeTransport << endl;
-    cout << "Nom du Trajet : " << NomTrajet << endl;
+    for (unsigned int i = 0; i<sousTrajets.getSize();i++)
+    {
+        sousTrajets.AccederElem(i)->Afficher();
+    }
+}
+
+void TrajetCompose::AjouterTrajetSimple()
+{
+    char * VD=new char[50];
+    cout << "Donnez une ville de depart : " << endl;
+    cin >> VD;
+    char * VA=new char[50];
+    cout << "Donnez une ville d'arrivee : " << endl;
+    cin >> VA;
+    char * MT=new char[50];
+    cout << "Donnez le moyen de transport : " << endl;
+    cin >> MT;
+    char * Nom=new char[50];
+    cout << "Donnez le nom du trajet : " << endl;
+    cin >> Nom;
+    TrajetSimple *nouvelTraj = new TrajetSimple(VD,VA,MT,Nom);
+    sousTrajets.AjouterElem(nouvelTraj);
+    delete [] VD;
+    delete [] VA;
+    delete [] MT;
+    delete [] Nom;
 }
 
 
@@ -47,38 +69,24 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
 #endif
-    VilleDepart = new char[strlen(unTrajetSimple.VilleDepart)+1];
-    VilleArrive = new char[strlen(unTrajetSimple.VilleArrive)+1];
-    MoyenDeTransport = new char[strlen(unTrajetSimple.MoyenDeTransport)+1];
-    NomTrajet = new char[strlen(unTrajetSimple.NomTrajet)+1];
-
-    strcpy(VilleDepart,unTrajetSimple.VilleDepart);
-    strcpy(VilleArrive,unTrajetSimple.VilleArrive);
-    strcpy(MoyenDeTransport,unTrajetSimple.MoyenDeTransport);
-    strcpy(NomTrajet,unTrajetSimple.NomTrajet);
-} //----- Fin de TrajetSimple (constructeur de copie)
+    
+} //----- Fin de TrajetCompose (constructeur de copie)
 
 
-TrajetSimple::TrajetSimple (const char * VD, const char * VA, const char * MT, const char * Nom)
+TrajetCompose::TrajetCompose (const char * Nom): sousTrajets()
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
-    VilleDepart = new char[strlen(VD)+1];
-    VilleArrive = new char[strlen(VA)+1];
-    MoyenDeTransport = new char[strlen(MT)+1];
-    NomTrajet = new char[strlen(Nom)+1];
+    nomDeTrajet = new char[strlen(Nom)+1];
 
-    strcpy(VilleDepart,VD);
-    strcpy(VilleArrive,VA);
-    strcpy(MoyenDeTransport,MT);
-    strcpy(NomTrajet,Nom);
+    strcpy(nomDeTrajet,Nom);
 } //----- Fin de TrajetSimple
 
 
-TrajetSimple::~TrajetSimple ( )
+TrajetCompose::~TrajetCompose ( )
 // Algorithme :
 //
 {

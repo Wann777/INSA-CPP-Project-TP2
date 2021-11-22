@@ -17,8 +17,8 @@ using namespace std;
 #include <cstring>
 //------------------------------------------------------ Include personnel
 #include "ListeTrajet.h"
-#include "Trajet.h"
-#include "TrajetSimple.h"
+
+
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -67,6 +67,33 @@ const Trajet* ListeTrajet::AccederElem (unsigned int pos) const
 		return courant->getTrajet();
 	}
 } //--Fin de methode AccederElem
+
+/*void ListeTrajet::AjouterElemCompo (const TrajetCompose* unTrajet)
+// Algorithme :
+// Allocation mémoire d'un nouvel maillon et copie en profondeur d'unTrajet
+// Insertion en debut de liste
+{
+	//Allocation de memoire
+	Maillon *nouvelMaill = new Maillon();
+	nouvelMaill->setSuivNull();
+	//copie en profondeur
+	TrajetCompose *nouvelTraj = new TrajetCompose(*unTrajet);
+	nouvelMaill->setTrajet(nouvelTraj);
+
+	//Insertion en tete
+	if (racine == NULL)
+	{
+		racine = nouvelMaill;
+	}
+	else
+	{
+		nouvelMaill->setSuiv(racine);
+		racine = nouvelMaill;
+	}
+	
+	taille++;
+}	//---Fin de methode AjouterElem*/
+
 
 unsigned int ListeTrajet::getSize () const
 {

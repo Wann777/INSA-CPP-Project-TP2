@@ -12,6 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
+#include "ListeTrajet.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -22,7 +23,6 @@
 //
 //
 //------------------------------------------------------------------------
-class ListeTrajet;
 class TrajetCompose : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
@@ -35,7 +35,8 @@ public:
     // Contrat :
     //
 
-    void Afficher(void) const;
+    void Afficher() const;
+    void AjouterTrajetSimple();
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -45,7 +46,7 @@ public:
     // Contrat :
     //
 
-    TrajetCompose ();
+    TrajetCompose (const char * Nom);
     // Mode d'emploi :
     //
     // Contrat :
@@ -64,7 +65,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     char * nomDeTrajet;
-    ListeTrajet *sousTrajets;
+    ListeTrajet sousTrajets;
 
 };
 

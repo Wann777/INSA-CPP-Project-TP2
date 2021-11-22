@@ -43,11 +43,13 @@ public:
     // Contrat :
     //
 
-    Trajet ();
+    //Trajet (const char * VD, const char * VA);
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+    Trajet ();
 
     virtual ~Trajet ( );
     // Mode d'emploi :
@@ -61,6 +63,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    //char * VilleDepart;
+    //char * VilleArrive;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Trajet>

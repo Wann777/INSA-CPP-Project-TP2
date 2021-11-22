@@ -104,17 +104,17 @@ void Catalogue::Afficher()const
 void Catalogue::AjouterTrajetSimple()
 {
 	char * VD=new char[50];
-	cout << "Donnez une ville de depart : " << endl;
-	cin >> VD;
-	char * VA=new char[50];
-	cout << "Donnez une ville d'arrivee : " << endl;
-	cin >> VA;
-	char * MT=new char[50];
-	cout << "Donnez le moyen de transport : " << endl;
-	cin >> MT;
-	char * Nom=new char[50];
-	strcpy(Nom,"TSssssssssssssssssssss");
-	//strcat(Nom,ListeT.getSize().c_str());
+    cout << "Donnez une ville de depart : " << endl;
+    cin >> VD;
+    char * VA=new char[50];
+    cout << "Donnez une ville d'arrivee : " << endl;
+    cin >> VA;
+    char * MT=new char[50];
+    cout << "Donnez le moyen de transport : " << endl;
+    cin >> MT;
+    char * Nom=new char[50];
+    cout << "Donnez le nom du trajet : " << endl;
+    cin >> Nom;
 	TrajetSimple *nouvelTraj = new TrajetSimple(VD,VA,MT,Nom);
 	ListeT.AjouterElem(nouvelTraj);
 	delete [] VD;

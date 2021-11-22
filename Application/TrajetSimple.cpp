@@ -47,13 +47,13 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
 #endif
-    VilleDepart = new char[strlen(unTrajetSimple.VilleDepart)+1];
-    VilleArrive = new char[strlen(unTrajetSimple.VilleArrive)+1];
+    //VilleDepart = new char[strlen(unTrajetSimple.VilleDepart)+1];
+    //VilleArrive = new char[strlen(unTrajetSimple.VilleArrive)+1];
     MoyenDeTransport = new char[strlen(unTrajetSimple.MoyenDeTransport)+1];
     NomTrajet = new char[strlen(unTrajetSimple.NomTrajet)+1];
 
-    strcpy(VilleDepart,unTrajetSimple.VilleDepart);
-    strcpy(VilleArrive,unTrajetSimple.VilleArrive);
+    //strcpy(VilleDepart,unTrajetSimple.VilleDepart);
+    //strcpy(VilleArrive,unTrajetSimple.VilleArrive);
     strcpy(MoyenDeTransport,unTrajetSimple.MoyenDeTransport);
     strcpy(NomTrajet,unTrajetSimple.NomTrajet);
 } //----- Fin de TrajetSimple (constructeur de copie)
