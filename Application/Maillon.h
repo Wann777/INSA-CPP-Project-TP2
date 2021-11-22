@@ -12,6 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
+#include "TrajetSimple.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -47,7 +48,7 @@ public:
     // Contrat :
     //
 
-    Maillon (const Trajet * trajett);
+    Maillon (const TrajetSimple * trajett);
     // Mode d'emploi :
     //
     // Contrat :

@@ -38,7 +38,7 @@ class ListeTrajet
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void AjouterElem (const Trajet* unTrajet);
+    void AjouterElem (const TrajetSimple* unTrajet);
     // Mode d'emploi :
     // Ajoute le Trajet pointé par unTrajet à la listeTrajet, en faisant une
     // copie en profondeur du trajet à ajouter

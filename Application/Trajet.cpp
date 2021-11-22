@@ -29,7 +29,9 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void Trajet::Afficher(void) const{}
+void Trajet::Afficher(void) const{
+    cout << "Check" << endl;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )

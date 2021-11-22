@@ -18,11 +18,12 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "ListeTrajet.h"
 #include "Trajet.h"
+#include "TrajetSimple.h"
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
 
-void ListeTrajet::AjouterElem (const Trajet* unTrajet)
+void ListeTrajet::AjouterElem (const TrajetSimple* unTrajet)
 // Algorithme :
 // Allocation mémoire d'un nouvel maillon et copie en profondeur d'unTrajet
 // Insertion en debut de liste
@@ -31,7 +32,7 @@ void ListeTrajet::AjouterElem (const Trajet* unTrajet)
 	Maillon *nouvelMaill = new Maillon();
 	nouvelMaill->setSuivNull();
 	//copie en profondeur
-	Trajet *nouvelTraj = new Trajet(*unTrajet);
+	TrajetSimple *nouvelTraj = new TrajetSimple(*unTrajet);
 	nouvelMaill->setTrajet(nouvelTraj);
 
 	//Insertion en tete
@@ -95,7 +96,7 @@ ListeTrajet::ListeTrajet (const ListeTrajet & uneListe): racine(NULL),taille(0)
 #endif
     for (unsigned int i = 0;i<uneListe.taille;i++)
 	{
-	    AjouterElem(uneListe.AccederElem(i));
+	    //AjouterElem(uneListe.AccederElem(i));
 	} //----- Fin de ListeTrajet (const ListeTrajet & uneListe)
 }
 

@@ -62,7 +62,7 @@ protected:
     // Contrat :
     //
 
-    /*void Rechercher() const;
+    //void Rechercher() const;
     // Mode d'emploi :
     // Service qui permet de rechercher un seul trajet (simple ou compose)
     // entre deux villes,
@@ -73,7 +73,7 @@ protected:
     // Service qui permet de ajouter un trajet simple entre deux villes,
     // Contrat :
 
-    void AjouterTrajetCompose();
+    /*void AjouterTrajetCompose();
      // Mode d'emploi :
     // Service qui permet de ajouter un trajet compose entre deux villes,
     // Contrat :

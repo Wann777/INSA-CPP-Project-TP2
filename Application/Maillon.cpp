@@ -66,14 +66,14 @@ Maillon::Maillon ()
 } //----- Fin de Maillon
 
 
-Maillon::Maillon (const Trajet * trajett)
+Maillon::Maillon (const TrajetSimple * trajett)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Maillon>" << endl;
 #endif
-    Trajet *nouvelTraj = new Trajet(*trajett);
+    TrajetSimple *nouvelTraj = new TrajetSimple(*trajett);
     unTrajet=nouvelTraj;
     MaillonSuiv=NULL;
 } //----- Fin de Maillon
