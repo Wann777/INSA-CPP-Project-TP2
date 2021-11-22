@@ -11,16 +11,16 @@
 #define ListeTrajet_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Maillon.h"
 
 //------------------------------------------------------------------ Types
-class Trajet;
+//class Trajet;
 
 //Maillon de la ListeTrajet
-struct Maillon {
-	Trajet *trajet; //pointeur sur le Trajet associé au Maillon
-	Maillon *suiv; //pointeur sur le Maillon suivant
-};
+//struct Maillon {
+//	Trajet *trajet; //pointeur sur le Trajet associé au Maillon
+//	Maillon *suiv; //pointeur sur le Maillon suivant
+//};
 
 //------------------------------------------------------------------------
 // Rôle de la classe <ListeTrajet>

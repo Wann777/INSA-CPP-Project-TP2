@@ -28,20 +28,20 @@ void ListeTrajet::AjouterElem (const Trajet* unTrajet)
 // Insertion en debut de liste
 {
 	//Allocation de memoire
-	Maillon *nouvelMaill = new Maillon;
-	nouvelMaill->suiv= NULL;
+	Maillon *nouvelMaill = new Maillon();
+	nouvelMaill->setSuivNull();
 	//copie en profondeur
 	Trajet *nouvelTraj = new Trajet(*unTrajet);
-	nouvelMaill->trajet = nouvelTraj;
+	nouvelMaill->setTrajet(nouvelTraj);
 
 	//Insertion en tete
-	if (racine ==NULL)
+	if (racine == NULL)
 	{
 		racine = nouvelMaill;
 	}
 	else
 	{
-		nouvelMaill->suiv= racine;
+		nouvelMaill->setSuiv(racine);
 		racine = nouvelMaill;
 	}
 	
@@ -58,12 +58,12 @@ const Trajet* ListeTrajet::AccederElem (unsigned int pos) const
 	{
 		Maillon* courant = racine;
 		int posCour= 0;
-		while (courant->suiv && posCour<pos)
+		while (courant->getSuiv() && posCour<pos)
 		{
-			courant = courant->suiv;
+			courant = courant->getSuiv();
 			posCour++;
 		}	
-		return courant->trajet;
+		return courant->getTrajet();
 	}
 } //--Fin de methode AccederElem
 
@@ -85,6 +85,7 @@ ListeTrajet::ListeTrajet(): racine (0),taille(0)
     cout << "Appel au constructeur de <ListeTrajet>" << endl;
 #endif
 }//--Fin de ListeTrajet
+
 ListeTrajet::ListeTrajet (const ListeTrajet & uneListe): racine(NULL),taille(0)
 // Algorithme :Constructeur de copie 
 // Copie en prof tous les elements d'uneListe
@@ -109,8 +110,8 @@ ListeTrajet::~ListeTrajet ()
     Maillon* courant = racine;
     while (courant)
     {
-	    delete courant->trajet;
-	    Maillon* suiv = courant->suiv;
+	    delete courant->getTrajet();
+	    Maillon* suiv = courant->getSuiv();
 	    delete courant;
 	    courant = suiv;
     }
