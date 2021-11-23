@@ -33,6 +33,27 @@ void Trajet::Afficher(void) const{
     cout << "Check" << endl;
 }
 
+char * Trajet::Rechercher(const char * VD, const char * VA) const
+{
+    char * tmp=new char[4];
+    strcpy(tmp,"non");
+    return tmp;
+}
+
+char * Trajet::getVilleDepart() const
+{
+    char * tmp=new char[4];
+    strcpy(tmp,"non");
+    return tmp;
+}
+
+char * Trajet::getVilleArrive() const
+{
+    char * tmp=new char[4];
+    strcpy(tmp,"non");
+    return tmp;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( const Trajet & unTrajet )
 // Algorithme :

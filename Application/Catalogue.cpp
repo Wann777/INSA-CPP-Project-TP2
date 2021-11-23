@@ -49,7 +49,7 @@ void Catalogue::Menu()
                 	Afficher();
                 	break;
             	case '1':
-                	//Rechercher();
+                	Rechercher();
                 	break;
             	case '2':
                 	AjouterTrajetSimple();
@@ -153,3 +153,35 @@ void Catalogue::AjouterTrajetCompose()
 	delete [] NomC;
 }
 
+void Catalogue::Rechercher() const
+{
+	char * VD=new char[50];
+    cout << "Donnez une ville de depart : " << endl;
+    cin >> VD;
+    char * VA=new char[50];
+    cout << "Donnez une ville d'arrivee : " << endl;
+    cin >> VA;
+
+    char * res;
+    const Trajet * tmp;
+    //cout << "Check" << endl;
+    for (unsigned int i = 0; i<ListeT.getSize();i++)
+	{
+		//cout << "Check" << endl;
+		tmp=ListeT.AccederElem(i);
+		//cout << "Check" << endl;
+		res=tmp->Rechercher(VD, VA);
+		if (strcmp(res,"non")==0)
+		{
+			//cout << "Check" << endl;
+			delete [] res;
+		}
+		else
+		{
+			cout << "Le trajet " << res << " pourrait vous intéresser." << endl;
+		}
+	}
+
+    delete [] VD;
+	delete [] VA;
+}

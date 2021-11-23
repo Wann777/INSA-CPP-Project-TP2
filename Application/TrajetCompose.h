@@ -37,6 +37,7 @@ public:
 
     void Afficher() const;
     void AjouterTrajetSimple();
+    char * Rechercher(const char * VD, const char * VA) const;
 
 
 //-------------------------------------------- Constructeurs - destructeur

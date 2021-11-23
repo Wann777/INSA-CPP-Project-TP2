@@ -38,6 +38,9 @@ public:
     //
 
     void Afficher(void) const;
+    char * Rechercher(const char * VD, const char * VA) const;
+    char * getVilleDepart() const;
+    char * getVilleArrive() const;
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const TrajetSimple & unTrajetSimple );

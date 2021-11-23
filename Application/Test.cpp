@@ -38,10 +38,10 @@ int main ()
 // Algorithme :
 //
 {
-  TrajetSimple t1("Lyon","Bordeaux","Train","TS1");
-  TrajetSimple t2("Lyon","Paris","Auto","TS3");
-  t1.Afficher();
-  t2.Afficher();
+  //TrajetSimple t1("Lyon","Bordeaux","Train","TS1");
+  //TrajetSimple t2("Lyon","Paris","Auto","TS3");
+  //t1.Afficher();
+  //t2.Afficher();
   Catalogue c;
   c.Menu();
   return 0;

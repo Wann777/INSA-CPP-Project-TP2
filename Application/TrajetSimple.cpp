@@ -38,6 +38,25 @@ void TrajetSimple::Afficher() const
     cout << "Nom du Trajet : " << NomTrajet << endl;
 }
 
+char * TrajetSimple::Rechercher(const char * VD, const char * VA) const
+{
+    //cout << "Check" << endl;
+    if (strcmp(VD,VilleDepart)==0 && strcmp(VA,VilleArrive)==0)
+        return NomTrajet;
+    char * tmp=new char[4];
+    strcpy(tmp,"non");
+    return tmp;
+}
+
+char * TrajetSimple::getVilleDepart() const
+{
+    return VilleDepart;
+}
+
+char * TrajetSimple::getVilleArrive() const
+{
+    return VilleArrive;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
@@ -85,6 +104,10 @@ TrajetSimple::~TrajetSimple ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
+    delete [] VilleDepart;
+    delete [] VilleArrive;
+    delete [] MoyenDeTransport;
+    delete [] NomTrajet;
 } //----- Fin de ~TrajetSimple
 
 

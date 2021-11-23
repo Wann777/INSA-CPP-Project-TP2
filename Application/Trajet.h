@@ -36,10 +36,11 @@ public:
     //
 
     virtual void Afficher(void) const;
-    /*virtual char * getVilleDepart() const;
+    virtual char * getVilleDepart() const;
     virtual char * getVilleArrive() const;
-    virtual char * getMoyenDeTransport() const;
+    /*virtual char * getMoyenDeTransport() const;
     virtual char * getNomTrajet() const;*/
+    virtual char * Rechercher(const char * VD, const char * VA) const;
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :
