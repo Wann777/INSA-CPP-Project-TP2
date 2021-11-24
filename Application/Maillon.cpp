@@ -67,7 +67,7 @@ Maillon::Maillon ()
 
 
 Maillon::Maillon (const TrajetSimple * trajett)
-// Algorithme :
+// Algorithme : 
 //
 {
 #ifdef MAP

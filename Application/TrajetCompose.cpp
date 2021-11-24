@@ -69,7 +69,6 @@ char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
     char * res;
     const Trajet * tmp;
     const char * tmpVD=VD;
-    int token=0;
     for (unsigned int i = 0; i<sousTrajets.getSize();i++)
     {
         //cout << "Check1" << endl;
@@ -78,7 +77,7 @@ char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
         res=tmp->Rechercher(tmpVD, VA);
         if (strcmp(res,"non")==0)
         {
-            //cout << "Check" << endl;
+            //cout << "Check" << endl; 
             delete [] res;
         }
         else
@@ -86,17 +85,12 @@ char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
             return nomDeTrajet;
         }
         //cout << "Check3" << endl;
-        if(i==0 || token==0)
+        if (strcmp(tmp->getVilleDepart(),tmpVD)==0)
         {
-            if (strcmp(tmp->getVilleDepart(),tmpVD)==0)
-            {
-                tmpVD=tmp->getVilleArrive();
-            }
-            else
-            {
-                token=1;
-            }
+            tmpVD=tmp->getVilleArrive();
         }
+        else
+            break;
     }
 
     char * tmpReturn=new char[4];
@@ -135,8 +129,9 @@ TrajetCompose::~TrajetCompose ( )
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <TrajetSimple>" << endl;
+    cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
+    delete [] nomDeTrajet;
 } //----- Fin de ~TrajetSimple
 
 

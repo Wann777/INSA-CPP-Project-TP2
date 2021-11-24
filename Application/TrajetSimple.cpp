@@ -96,7 +96,7 @@ TrajetSimple::TrajetSimple (const char * VD, const char * VA, const char * MT, c
     strcpy(NomTrajet,Nom);
 } //----- Fin de TrajetSimple
 
-
+ 
 TrajetSimple::~TrajetSimple ( )
 // Algorithme :
 //

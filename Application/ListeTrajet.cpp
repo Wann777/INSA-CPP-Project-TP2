@@ -58,7 +58,7 @@ const Trajet* ListeTrajet::AccederElem (unsigned int pos) const
 	else
 	{
 		Maillon* courant = racine;
-		int posCour= 0;
+		unsigned int posCour= 0;
 		while (courant->getSuiv() && posCour<pos)
 		{
 			courant = courant->getSuiv();
@@ -94,7 +94,7 @@ ListeTrajet::ListeTrajet (const ListeTrajet & uneListe): racine(NULL),taille(0)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <ListeTrajet>" << endl;
-#endif
+#endif 
     for (unsigned int i = 0;i<uneListe.taille;i++)
 	{
 	    //AjouterElem(uneListe.AccederElem(i));

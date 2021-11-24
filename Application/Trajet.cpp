@@ -12,7 +12,7 @@
 
 //-------------------------------------------------------- Include système
 using namespace std;
-#include <iostream>
+#include <iostream> 
 #include <cstring>
 
 //------------------------------------------------------ Include personnel

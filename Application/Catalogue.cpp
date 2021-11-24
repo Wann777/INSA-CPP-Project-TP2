@@ -26,7 +26,6 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 void Catalogue::Menu()
-
 // Algorithme :
 //Proposer des services differents aux utilisateurs
 {
@@ -164,6 +163,7 @@ void Catalogue::Rechercher() const
 
     char * res;
     const Trajet * tmp;
+    int token=0;
     //cout << "Check" << endl;
     for (unsigned int i = 0; i<ListeT.getSize();i++)
 	{
@@ -179,8 +179,11 @@ void Catalogue::Rechercher() const
 		else
 		{
 			cout << "Le trajet " << res << " pourrait vous intéresser." << endl;
+			token++;
 		}
 	}
+	if (token==0)
+		cout << "Desole, aucun trajet ne corespond à votre demande." << endl;
 
     delete [] VD;
 	delete [] VA;
