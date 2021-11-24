@@ -42,9 +42,18 @@ void ListeTrajet::AjouterElem (Trajet* unTrajet)
 	}
 	else
 	{
-		nouvelMaill->setSuiv(racine);
-		racine = nouvelMaill;
+		Maillon * tmp = racine;
+		while(tmp->getSuiv())
+		{
+			tmp=tmp->getSuiv();
+		}
+		tmp->setSuiv(nouvelMaill);
 	}
+	//else
+	//{
+		//nouvelMaill->setSuiv(racine);
+		//racine = nouvelMaill;
+	//}
 	
 	taille++;
 }	//---Fin de methode AjouterElem

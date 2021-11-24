@@ -94,8 +94,10 @@ void Catalogue::Afficher()const
 {
 	cout<< "Le catalogue contient actuellement "<<ListeT.getSize();
 	cout<< " trajet" << (ListeT.getSize()> 1 ?"s." :".")<<endl;
+	cout << endl;
 	for (unsigned int i = 0; i<ListeT.getSize();i++)
 	{
+		cout << "==============================================" << endl;
 		ListeT.AccederElem(i)->Afficher();
 	}
 } // Fin de methode Afficher()

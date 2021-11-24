@@ -32,10 +32,13 @@ using namespace std;
 
 void TrajetSimple::Afficher() const
 {
+    cout << "Trajet Simple :" << endl;
     cout << "Ville de Depart : " << VilleDepart << endl;
     cout << "Ville d'Arrive : " << VilleArrive << endl;
     cout << "Moyen de transport : " << MoyenDeTransport << endl;
     cout << "Nom du Trajet : " << NomTrajet << endl;
+    //cout << "==============================================" << endl;
+    //cout << endl;
 }
 
 char * TrajetSimple::Rechercher(const char * VD, const char * VA) const
