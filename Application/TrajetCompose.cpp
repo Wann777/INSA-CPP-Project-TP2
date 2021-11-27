@@ -78,20 +78,11 @@ void TrajetCompose::AjouterTrajetSimple()
 char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
 {
 
-// Algorithme : Verifier la ville de depart du premier sous-trajet
-// et la ville d'arrivee du dernier trajet
+// Algorithme : Parcourir la liste de sousTrajets pour verifier chaque sous-trajet
+// sa ville de depart et sa ville d'arrivee
 
-	char* villeDep =(sousTrajets.AccederElem(0))->getVilleDepart();
-	char* villeDes = (sousTrajets.AccederElem(sousTrajets.getSize()-1))->getVilleArrive();
-	 if (strcmp(VD,villeDep)==0 && strcmp(VA,villeDes)==0)
-        return nomDeTrajet;
-    char * tmp=new char[4];
-    strcpy(tmp,"non");
-    delete []villeDep;
-    delete []villeDes;
-    return tmp;
 
-    /*char * res;
+    char * res;
     const Trajet * tmp;
     const char * tmpVD=VD;
     for (unsigned int i = 0; i<sousTrajets.getSize();i++)
@@ -116,7 +107,7 @@ char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
 
     char * tmpReturn=new char[4];
     strcpy(tmpReturn,"non");
-    return tmpReturn;*/
+    return tmpReturn;
 }
 
 
