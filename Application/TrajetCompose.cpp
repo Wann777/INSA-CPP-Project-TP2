@@ -32,9 +32,11 @@ using namespace std;
 
 void TrajetCompose::Afficher() const
 {
-    cout << "Nom du Trajet Compose : " << nomDeTrajet << endl;
-    cout<< "Le trajet compose contient actuellement "<<sousTrajets.getSize();
-    cout<< " trajet" << (sousTrajets.getSize()> 1 ?"s." :".")<<endl;
+// Algorithme : Parcourir la liste sousTrajets pour afficher tous les sous-trajets
+
+	cout << "TRAJET COMPOSE: " << nomDeTrajet << endl; 
+    cout<< "Ce trajet compose contient actuellement "<<sousTrajets.getSize();
+    cout<< " sous-trajet" << (sousTrajets.getSize()> 1 ?"s." :".")<<endl;
     cout << endl;
     for (unsigned int i = 0; i<sousTrajets.getSize();i++)
     {
@@ -45,9 +47,17 @@ void TrajetCompose::Afficher() const
 
 void TrajetCompose::AjouterTrajetSimple()
 {
+//Algorithme: Ajouter un sous-trajet de type TrajetSimple pour fabriquer un trajet compose
+//Contrat: La ville d'arrivee du sous-trajet n est la ville de depart du sous-trajet n+1 
     char * VD=new char[50];
     cout << "Donnez une ville de depart : " << endl;
     cin >> VD;
+    while (sousTrajets.getSize()!=0 && strcmp(VD,(sousTrajets.AccederElem(sousTrajets.getSize()-1))->getVilleArrive())!=0)
+	 {
+		 cout<< "La ville de depart de ce sous-trajet est incoherente !" <<endl;
+		 cout << "Donnez une ville de depart valide : " << endl;
+    		cin >> VD; 
+	 }
     char * VA=new char[50];
     cout << "Donnez une ville d'arrivee : " << endl;
     cin >> VA;
@@ -55,7 +65,7 @@ void TrajetCompose::AjouterTrajetSimple()
     cout << "Donnez le moyen de transport : " << endl;
     cin >> MT;
     char * Nom=new char[50];
-    cout << "Donnez le nom du trajet : " << endl;
+    cout << "Donnez le nom du sous trajet : " << endl;
     cin >> Nom;
     TrajetSimple *nouvelTraj = new TrajetSimple(VD,VA,MT,Nom);
     sousTrajets.AjouterElem(nouvelTraj);
@@ -67,26 +77,35 @@ void TrajetCompose::AjouterTrajetSimple()
 
 char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
 {
-    //cout << "Check" << endl;
-    char * res;
+
+// Algorithme : Verifier la ville de depart du premier sous-trajet
+// et la ville d'arrivee du dernier trajet
+
+	char* villeDep =(sousTrajets.AccederElem(0))->getVilleDepart();
+	char* villeDes = (sousTrajets.AccederElem(sousTrajets.getSize()-1))->getVilleArrive();
+	 if (strcmp(VD,villeDep)==0 && strcmp(VA,villeDes)==0)
+        return nomDeTrajet;
+    char * tmp=new char[4];
+    strcpy(tmp,"non");
+    delete []villeDep;
+    delete []villeDes;
+    return tmp;
+
+    /*char * res;
     const Trajet * tmp;
     const char * tmpVD=VD;
     for (unsigned int i = 0; i<sousTrajets.getSize();i++)
     {
-        //cout << "Check1" << endl;
         tmp=sousTrajets.AccederElem(i);
-        //cout << "Check2" << endl;
         res=tmp->Rechercher(tmpVD, VA);
         if (strcmp(res,"non")==0)
         {
-            //cout << "Check" << endl; 
             delete [] res;
         }
         else
         {
             return nomDeTrajet;
         }
-        //cout << "Check3" << endl;
         if (strcmp(tmp->getVilleDepart(),tmpVD)==0)
         {
             tmpVD=tmp->getVilleArrive();
@@ -97,7 +116,7 @@ char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
 
     char * tmpReturn=new char[4];
     strcpy(tmpReturn,"non");
-    return tmpReturn;
+    return tmpReturn;*/
 }
 
 
@@ -134,6 +153,7 @@ TrajetCompose::~TrajetCompose ( )
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
     delete [] nomDeTrajet;
+    sousTrajets.~ListeTrajet();
 } //----- Fin de ~TrajetSimple
 
 

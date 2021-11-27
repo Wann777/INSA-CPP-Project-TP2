@@ -1,5 +1,5 @@
-main: Test.o Trajet.o TrajetSimple.o TrajetCompose.o Maillon.o ListeTrajet.o Catalogue.o
-	g++ -o main -ansi -pedantic -Wall -std=c++11 -DMAP -g Test.o Trajet.o TrajetSimple.o TrajetCompose.o Maillon.o ListeTrajet.o Catalogue.o
+sejours: Test.o Trajet.o TrajetSimple.o TrajetCompose.o Maillon.o ListeTrajet.o Catalogue.o
+	g++ -o sejours -ansi -pedantic -Wall -std=c++11 -DMAP -g Test.o Trajet.o TrajetSimple.o TrajetCompose.o Maillon.o ListeTrajet.o Catalogue.o
 Test.o: Test.cpp
 	g++ -c -ansi -pedantic -Wall -std=c++11 -DMAP -g Test.cpp
 Trajet.o: Trajet.cpp
@@ -15,4 +15,4 @@ ListeTrajet.o: ListeTrajet.cpp
 Catalogue.o: Catalogue.cpp
 	g++ -c -ansi -pedantic -Wall -std=c++11 -DMAP -g Catalogue.cpp
 clear:
-	rm -f *.o main
+	rm -f *.o sejours

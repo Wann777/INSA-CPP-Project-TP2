@@ -26,17 +26,16 @@ using namespace std;
 void ListeTrajet::AjouterElem (Trajet* unTrajet)
 // Algorithme :
 // Allocation mémoire d'un nouvel maillon et copie en profondeur d'unTrajet
-// Insertion en debut de liste
+// Insertion en fin de liste
 {
 	//Allocation de memoire
 	Maillon *nouvelMaill = new Maillon();
 	nouvelMaill->setSuivNull();
 	//copie en profondeur
-	//Trajet *nouvelTraj = new TrajetSimple(unTrajet->getVilleDepart(),unTrajet->getVilleArrive(),unTrajet->getMoyenDeTransport(),unTrajet->getNomTrajet());
 	nouvelMaill->setTrajet(unTrajet);
 
-	//Insertion en tete
-	if (racine == NULL)
+	//Insertion en fin de la liste
+	if (racine == NULL) //la liste est vide
 	{
 		racine = nouvelMaill;
 	}
@@ -45,6 +44,7 @@ void ListeTrajet::AjouterElem (Trajet* unTrajet)
 		Maillon * tmp = racine;
 		while(tmp->getSuiv())
 		{
+			//Parcourir jusqu'a la fin de la liste
 			tmp=tmp->getSuiv();
 		}
 		tmp->setSuiv(nouvelMaill);
@@ -97,7 +97,7 @@ ListeTrajet::ListeTrajet(): racine (0),taille(0)
 #endif
 }//--Fin de ListeTrajet
 
-ListeTrajet::ListeTrajet (const ListeTrajet & uneListe): racine(NULL),taille(0)
+/*ListeTrajet::ListeTrajet (const ListeTrajet & uneListe): racine(NULL),taille(0)
 // Algorithme :Constructeur de copie 
 // Copie en prof tous les elements d'uneListe
 {
@@ -106,10 +106,10 @@ ListeTrajet::ListeTrajet (const ListeTrajet & uneListe): racine(NULL),taille(0)
 #endif 
     for (unsigned int i = 0;i<uneListe.taille;i++)
 	{
-	    //AjouterElem(uneListe.AccederElem(i));
+	    AjouterElem(uneListe.AccederElem(i));
 	} //----- Fin de ListeTrajet (const ListeTrajet & uneListe)
 }
-
+*/
 ListeTrajet::~ListeTrajet ()
 // Algorithme :	Parcourir la liste pour liberer la zone de memoire allouee par 
 // chaque maillon
@@ -119,13 +119,16 @@ ListeTrajet::~ListeTrajet ()
     cout << "Appel au destructeur de <ListeTrajet>" << endl;
 #endif
     Maillon* courant = racine;
+    Maillon* suiv = courant;
     while (courant)
     {
-	    delete courant->getTrajet();
-	    Maillon* suiv = courant->getSuiv();
-	    delete courant;
+	    (courant->getTrajet())->~Trajet();
+	    suiv = courant->getSuiv();	
 	    courant = suiv;
     }
+    delete courant;
+    delete suiv;
+   
 } //----- Fin de ~ListeTrajet
 
 

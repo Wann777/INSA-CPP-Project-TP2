@@ -84,6 +84,7 @@ Catalogue::~Catalogue ()
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
+   	ListeT.~ListeTrajet();
 } //----- Fin de ~Catalogue
 
 
@@ -142,7 +143,7 @@ void Catalogue::AjouterTrajetCompose()
             	nouvelTrajComp->AjouterTrajetSimple();
             	break;
             case '1':
-            	cout << "Au revoir..." << endl;
+            	cout << "L'ajout d'un trajet compose est termine !" << endl;
                 break;
         	default:
             cout << "Choix invalide. Choisir l'une des valeurs entre 0 et 1" << endl;

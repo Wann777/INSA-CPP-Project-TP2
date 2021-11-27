@@ -32,18 +32,16 @@ using namespace std;
 
 void TrajetSimple::Afficher() const
 {
-    cout << "Trajet Simple :" << endl;
+    cout << "TRAJET SIMPLE :" << NomTrajet <<endl;
     cout << "Ville de Depart : " << VilleDepart << endl;
     cout << "Ville d'Arrive : " << VilleArrive << endl;
     cout << "Moyen de transport : " << MoyenDeTransport << endl;
-    cout << "Nom du Trajet : " << NomTrajet << endl;
     //cout << "==============================================" << endl;
     //cout << endl;
 }
 
 char * TrajetSimple::Rechercher(const char * VD, const char * VA) const
 {
-    //cout << "Check" << endl;
     if (strcmp(VD,VilleDepart)==0 && strcmp(VA,VilleArrive)==0)
         return NomTrajet;
     char * tmp=new char[4];
@@ -69,13 +67,8 @@ TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
 #endif
-    //VilleDepart = new char[strlen(unTrajetSimple.VilleDepart)+1];
-    //VilleArrive = new char[strlen(unTrajetSimple.VilleArrive)+1];
     MoyenDeTransport = new char[strlen(unTrajetSimple.MoyenDeTransport)+1];
     NomTrajet = new char[strlen(unTrajetSimple.NomTrajet)+1];
-
-    //strcpy(VilleDepart,unTrajetSimple.VilleDepart);
-    //strcpy(VilleArrive,unTrajetSimple.VilleArrive);
     strcpy(MoyenDeTransport,unTrajetSimple.MoyenDeTransport);
     strcpy(NomTrajet,unTrajetSimple.NomTrajet);
 } //----- Fin de TrajetSimple (constructeur de copie)
