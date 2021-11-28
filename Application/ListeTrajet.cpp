@@ -119,15 +119,14 @@ ListeTrajet::~ListeTrajet ()
     cout << "Appel au destructeur de <ListeTrajet>" << endl;
 #endif
     Maillon* courant = racine;
-    Maillon* suiv = courant;
-    while (courant)
+    while(courant)
     {
-	    (courant->getTrajet())->~Trajet();
-	    suiv = courant->getSuiv();	
-	    courant = suiv;
+        delete courant->getTrajet();
+        Maillon* suivant = courant->getSuiv();
+        delete courant;
+        courant = suivant;
     }
     delete courant;
-    delete suiv;
    
 } //----- Fin de ~ListeTrajet
 

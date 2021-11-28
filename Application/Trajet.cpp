@@ -70,20 +70,6 @@ Trajet::Trajet ( const Trajet & unTrajet )
 
 } //----- Fin de Trajet (constructeur de copie)
 
-/*
-Trajet::Trajet (const char * VD, const char * VA)
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Trajet>" << endl;
-#endif
-    VilleDepart = new char[strlen(VD)+1];
-    VilleArrive = new char[strlen(VA)+1];
-
-    strcpy(VilleDepart,VD);
-    strcpy(VilleArrive,VA);
-} //----- Fin de Trajet*/
 
 Trajet::Trajet ()
 // Algorithme :

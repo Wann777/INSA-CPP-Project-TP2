@@ -144,7 +144,7 @@ TrajetCompose::~TrajetCompose ( )
     cout << "Appel au destructeur de <TrajetCompose>" << endl;
 #endif
     delete [] nomDeTrajet;
-    sousTrajets.~ListeTrajet();
+    
 } //----- Fin de ~TrajetSimple
 
 

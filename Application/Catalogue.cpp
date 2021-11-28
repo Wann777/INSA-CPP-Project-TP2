@@ -84,7 +84,6 @@ Catalogue::~Catalogue ()
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
 #endif
-   	ListeT.~ListeTrajet();
 } //----- Fin de ~Catalogue
 
 
