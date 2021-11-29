@@ -110,6 +110,15 @@ char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
     return tmpReturn;
 }
 
+char * TrajetCompose::getVilleDepart() const
+{
+    return sousTrajets.AccederElem(0)->getVilleDepart();
+}
+
+char * TrajetCompose::getVilleArrive() const
+{
+    return sousTrajets.AccederElem(sousTrajets.getSize()-1)->getVilleArrive();
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )

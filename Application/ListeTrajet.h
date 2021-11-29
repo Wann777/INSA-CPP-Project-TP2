@@ -51,6 +51,13 @@ public:
     // Retourne la taille de la listeTrajet (nb de trajets dans la liste)
     // 0 si ListeTrajet est vide
     // Contrat: 
+    void AjouterElemAlpha (Trajet* unTrajet);
+   // Mode d'emploi :
+    // Ajoute un element dans la liste en respectant l'ordre alphaberique 
+    // de ville de depart et d'arrivee
+    // Contrat :
+    // unTrajet pointe vers un Trajet valide
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -73,6 +80,15 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
+
+    int Comparer (Trajet* t1, Trajet* t2) const;
+    // Mode d'emploi :
+    // Compare la ville de depart et d'arrivee de t1 et t2 par order alphaberique
+    // Retourne 0 si pareil
+    //-1 si t1 est plus petit que t2 dans l'ordre lexicographique, par exemple Bordeaux vs Lyon
+    // 1 si t1 est plus grand que t2, par ex Lyon vs Paris
+    // Contrat :
+    // t1 et t2 sont valides
 
 //----------------------------------------------------- Attributs protégés
    Maillon *racine;

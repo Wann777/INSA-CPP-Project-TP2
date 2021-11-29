@@ -117,7 +117,10 @@ void Catalogue::AjouterTrajetSimple()
     cout << "Donnez le nom du trajet : " << endl;
     cin >> Nom;
 	Trajet *nouvelTraj = new TrajetSimple(VD,VA,MT,Nom);
-	ListeT.AjouterElem(nouvelTraj);
+	//ListeT.AjouterElem(nouvelTraj);
+	//
+	//Ajouter un element en respectant l'ordre alphaberique
+	ListeT.AjouterElemAlpha(nouvelTraj);
 	delete [] VD;
 	delete [] VA;
 	delete [] MT;
@@ -150,7 +153,8 @@ void Catalogue::AjouterTrajetCompose()
 
     } while (input != '1');
 
-	ListeT.AjouterElem(nouvelTrajComp);
+	//ListeT.AjouterElem(nouvelTrajComp);
+	ListeT.AjouterElemAlpha(nouvelTrajComp);
 	delete [] NomC;
 }
 
