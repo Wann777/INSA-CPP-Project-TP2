@@ -20,8 +20,8 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Catalogue>
-//
-//
+// Permet d'afficher le menu d'interaction avec l'utilisateur et
+// de stocker les trajets.
 //------------------------------------------------------------------------
 
 class Catalogue
@@ -41,13 +41,13 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ();
     // Mode d'emploi :
-    //
+    //  Initialise la liste chainée du catalogue
     // Contrat :
     //
 
     virtual ~Catalogue ( );
     // Mode d'emploi :
-    //
+    //  Détruit le catalogue
     // Contrat :
     //
 

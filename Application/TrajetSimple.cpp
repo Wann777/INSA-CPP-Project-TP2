@@ -24,11 +24,6 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type TrajetSimple::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
 
 void TrajetSimple::Afficher() const
 {
@@ -41,6 +36,9 @@ void TrajetSimple::Afficher() const
 }
 
 char * TrajetSimple::Rechercher(const char * VD, const char * VA) const
+// Algorithme :
+//  Vérifie si la ville de départ coresponds à VD et la ville d'arrivée à VA
+//  Si oui, retourne le nom du trajet, si non, retourne 'non'
 {
     if (strcmp(VD,VilleDepart)==0 && strcmp(VA,VilleArrive)==0)
         return NomTrajet;

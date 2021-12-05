@@ -111,11 +111,15 @@ char * TrajetCompose::Rechercher(const char * VD, const char * VA) const
 }
 
 char * TrajetCompose::getVilleDepart() const
+// Algorithme : 
+//  Retourne la ville de départ du trajet composé, soit le premier élément de la liste
 {
     return sousTrajets.AccederElem(0)->getVilleDepart();
 }
 
 char * TrajetCompose::getVilleArrive() const
+// Algorithme : 
+//  Retourne la ville d'arrivée du trajet composé, soit la dernière ville de la liste
 {
     return sousTrajets.AccederElem(sousTrajets.getSize()-1)->getVilleArrive();
 }
@@ -134,7 +138,7 @@ TrajetCompose::TrajetCompose ( const TrajetCompose & unTrajetCompose )
 
 TrajetCompose::TrajetCompose (const char * Nom): sousTrajets()
 // Algorithme :
-//
+//  Constructeur de Trajet composé qui créé une liste de trajets vides et applique le nom passé en paramètre
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;

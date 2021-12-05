@@ -116,6 +116,9 @@ void ListeTrajet::AjouterElemAlpha (Trajet* unTrajet)
 
 
 const Trajet* ListeTrajet::AccederElem (unsigned int pos) const
+// Algorithme :
+//  Permet de renvoyer l'élément de la liste corespondant à la position passée en paramètre
+//  En parcourant la liste à partir d'une copie jusqu'à atteindre la position demandée 
 {
 	if (pos>=taille)
 	{ 
@@ -136,6 +139,8 @@ const Trajet* ListeTrajet::AccederElem (unsigned int pos) const
 
 
 unsigned int ListeTrajet::getSize () const
+// Algorithme :
+//  Retroune la taille de la liste
 {
 	return taille;
 }

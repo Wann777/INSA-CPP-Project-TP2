@@ -22,32 +22,38 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Maillon::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+
 void Maillon::setSuiv (Maillon * suiv)
+// Algorithme :
+//  Permet de positionner le maillon suivant
 {
     MaillonSuiv=suiv;
 }
 
 void Maillon::setSuivNull()
+// Algorithme :
+//  Permet de positionner le maillon suivant à null
 {
     MaillonSuiv=NULL;
 }
 
 void Maillon::setTrajet (Trajet * newtrajet)
+// Algorithme :
+//  Permet de positionner le trajet à newtrajet
 {
     unTrajet=newtrajet;
 }
 
 Maillon * Maillon::getSuiv ()
+// Algorithme :
+//  Retourner le maillon suivant
 {
     return MaillonSuiv;
 }
 
 Trajet * Maillon::getTrajet ()
+// Algorithme :
+//  Permet de retourner le trajet
 {
     return unTrajet;
 }
@@ -68,7 +74,7 @@ Maillon::Maillon ()
 
 Maillon::Maillon (const TrajetSimple * trajett)
 // Algorithme : 
-//
+//  Construit le maillon en initialisant un nouveau trajet simple et en mettant le maillon suivant à null
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Maillon>" << endl;
@@ -81,7 +87,7 @@ Maillon::Maillon (const TrajetSimple * trajett)
 
 Maillon::~Maillon ( )
 // Algorithme :
-//
+//  Destructeur de maillon
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Maillon>" << endl;

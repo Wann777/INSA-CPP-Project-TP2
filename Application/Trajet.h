@@ -19,7 +19,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-//
+//  La classe Trajet est la classe mère de Trajet simple et composé
+//  Elle permet d'utiliser le polymorphisme afin de ne pas différencier
+//  ses deux classes filles dans la liste de trajet
 //
 //------------------------------------------------------------------------
 
@@ -36,11 +38,32 @@ public:
     //
 
     virtual void Afficher(void) const;
+    // Mode d'emploi :
+    //  Service permettant d'afficher le trajet
+    //  N'est jamais utilisé par trajet, plutôt par ses descendants Trajets simple et composé
+    // Contrat :
+    //
     virtual char * getVilleDepart() const;
+    // Mode d'emploi :
+    //  Service permettant de retourner la ville de départ du trajet
+    //  N'est jamais utilisé par trajet, plutôt par ses descendants Trajets simple et composé
+    // Contrat :
+    //
     virtual char * getVilleArrive() const;
+    // Mode d'emploi :
+    //  Service permettant de retourner la ville d'arrivée du trajet
+    //  N'est jamais utilisé par trajet, plutôt par ses descendants Trajets simple et composé
+    // Contrat :
+    //
     /*virtual char * getMoyenDeTransport() const;
     virtual char * getNomTrajet() const;*/
     virtual char * Rechercher(const char * VD, const char * VA) const;
+    // Mode d'emploi :
+    //  Service permettant de rechercher si la ville de départ du trajet coresponds à
+    //  VD passé en paramètre et si la ville d'arrivée corespond à VA passé en paramètre
+    //  N'est jamais utilisé par trajet, plutôt par ses descendants Trajets simple et composé
+    // Contrat :
+    //
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :

@@ -12,15 +12,12 @@
 
 //------------------------------------------------------------------------
 // Rôle du module <Test>
-//
+//  Permet d'initialiser un nouveau catalogue et de lancer son menu
 //
 //------------------------------------------------------------------------
 
 /////////////////////////////////////////////////////////////////  INCLUDE
 //--------------------------------------------------- Interfaces utilisées
-#include "Trajet.h"
-#include "TrajetSimple.h"
-#include "ListeTrajet.h"
 #include "Catalogue.h"
 //------------------------------------------------------------- Constantes
 

@@ -68,7 +68,7 @@ void Catalogue::Menu()
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue (): ListeT()
 // Algorithme :
-//
+// Appeller tout simplement le constructeur de ListeTrajet sur ListeT
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
@@ -79,7 +79,7 @@ Catalogue::Catalogue (): ListeT()
 
 Catalogue::~Catalogue ()
 // Algorithme :
-//
+// Destructeur de Catalogue
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Catalogue>" << endl;
@@ -91,6 +91,8 @@ Catalogue::~Catalogue ()
 
 //----------------------------------------------------- Méthodes protégées
 void Catalogue::Afficher()const
+// Algorithme :
+// Affiche le catalogue, soit tout les trajets présents dans le catalogue
 {
 	cout<< "Le catalogue contient actuellement "<<ListeT.getSize();
 	cout<< " trajet" << (ListeT.getSize()> 1 ?"s." :".")<<endl;
@@ -103,6 +105,8 @@ void Catalogue::Afficher()const
 } // Fin de methode Afficher()
 
 void Catalogue::AjouterTrajetSimple()
+// Algorithme :
+// Ajoute un trajet simple dans la liste des trajets
 {
 	char * VD=new char[50];
     cout << "Donnez une ville de depart : " << endl;
@@ -128,11 +132,16 @@ void Catalogue::AjouterTrajetSimple()
 }
 
 void Catalogue::AjouterTrajetCompose()
+// Algorithme :
+// Ajoute un trajet composé dans la liste des trajets
 {
 	char * NomC=new char[50];
     cout << "Donnez le nom du trajet compose : " << endl;
     cin >> NomC;
     TrajetCompose *nouvelTrajComp = new TrajetCompose(NomC);
+    cout << "Veuillez ajouter au moins deux trajets simples : " << endl;
+    nouvelTrajComp->AjouterTrajetSimple();
+    nouvelTrajComp->AjouterTrajetSimple();
     char input = '0';
     do
     {
@@ -159,6 +168,8 @@ void Catalogue::AjouterTrajetCompose()
 }
 
 void Catalogue::Rechercher() const
+// Algorithme :
+// Permet de rechercher un trajet à partir d'une ville de départ et d'arrivé donnée par l'utilisateur
 {
 	char * VD=new char[50];
     cout << "Donnez une ville de depart : " << endl;
