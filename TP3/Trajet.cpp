@@ -14,6 +14,7 @@
 using namespace std;
 #include <iostream> 
 #include <cstring>
+#include <string>
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -29,48 +30,15 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-void Trajet::Afficher(void) const{
-    cout << "Check" << endl;
-}
 
-char * Trajet::Rechercher(const char * VD, const char * VA) const
-{
-    char * tmp=new char[4];
-    strcpy(tmp,"non");
-    return tmp;
-}
-
-char * Trajet::getVilleDepart() const
-{
-    char * tmp=new char[4];
-    strcpy(tmp,"non");
-    return tmp;
-}
-
-char * Trajet::getVilleArrive() const
-{
-    char * tmp=new char[4];
-    strcpy(tmp,"non");
-    return tmp;
-}
 
 //-------------------------------------------- Constructeurs - destructeur
-Trajet::Trajet ( const Trajet & unTrajet )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Trajet>" << endl;
-#endif
-
-
-} //----- Fin de Trajet (constructeur de copie)
-
 
 Trajet::Trajet ()
 // Algorithme :
 //
 {
+	
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
 #endif

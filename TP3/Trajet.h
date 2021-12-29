@@ -38,32 +38,32 @@ public:
     // Contrat :
     //
 
-    virtual void Afficher(void) const;
+    virtual void Afficher(void) const=0;
     // Mode d'emploi :
     //  Service permettant d'afficher le trajet
     //  N'est jamais utilisé par trajet, plutôt par ses descendants Trajets simple et composé
     // Contrat :
     //
-    virtual char * getVilleDepart() const;
+    virtual const std::string& getVilleDepart() const =0;
     // Mode d'emploi :
     //  Service permettant de retourner la ville de départ du trajet
     //  N'est jamais utilisé par trajet, plutôt par ses descendants Trajets simple et composé
     // Contrat :
     //
-    virtual char * getVilleArrive() const;
+    virtual const std::string& getVilleArrive() const =0;
     // Mode d'emploi :
     //  Service permettant de retourner la ville d'arrivée du trajet
     //  N'est jamais utilisé par trajet, plutôt par ses descendants Trajets simple et composé
     // Contrat :
     //
-    virtual std::string getDescription () const;
+    virtual std::string getDescription () const =0;
 	//Mode d'emploi:
     // Service permettant de retourner les infos d'un trajet en chaine 
     // de caracteres
     // Contrat: 
     // un trajet valide
 
-    virtual char * Rechercher(const char * VD, const char * VA) const;
+    virtual const std::string Rechercher(const std::string& VD, const std::string& VA) const =0 ;
     // Mode d'emploi :
     //  Service permettant de rechercher si la ville de départ du trajet coresponds à
     //  VD passé en paramètre et si la ville d'arrivée corespond à VA passé en paramètre
@@ -71,7 +71,7 @@ public:
     // Contrat :
     //
 //-------------------------------------------- Constructeurs - destructeur
-    Trajet ( const Trajet & unTrajet );
+    //Trajet ( const Trajet & unTrajet );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
@@ -96,11 +96,7 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
 	
-//    std::string convertirChar (const char* unPtrChar)const;
-    // Mode d'emploi :
-    // Convertir un Char* en string
-    // Contrat :
-    //
+
 
 
 //----------------------------------------------------- Attributs protégés

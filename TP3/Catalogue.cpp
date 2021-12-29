@@ -14,6 +14,8 @@
 using namespace std;
 #include <iostream>
 #include <cstring>
+#include <string>
+#include <fstream>
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
 #include "TrajetSimple.h"
@@ -108,92 +110,58 @@ void Catalogue::AjouterTrajetSimple()
 // Algorithme :
 // Ajoute un trajet simple dans la liste des trajets
 {
-	char * VD=new char[50];
-    cout << "Donnez une ville de depart : " << endl;
-    cin >> VD;
-    char * VA=new char[50];
-    cout << "Donnez une ville d'arrivee : " << endl;
-    cin >> VA;
-    char * MT=new char[50];
-    cout << "Donnez le moyen de transport : " << endl;
-    cin >> MT;
-    char * Nom=new char[50];
-    cout << "Donnez le nom du trajet : " << endl;
-    cin >> Nom;
-	Trajet *nouvelTraj = new TrajetSimple(VD,VA,MT,Nom);
-	//ListeT.AjouterElem(nouvelTraj);
-	//
-	//Ajouter un element en respectant l'ordre alphaberique
-	ListeT.AjouterElemAlpha(nouvelTraj);
-	delete [] VD;
-	delete [] VA;
-	delete [] MT;
-	delete [] Nom;
+	string VD = VerifierChaine("Donnez une ville de depart : ");
+	string VA = VerifierChaine("Donnez une ville d'arrivee : ");
+	string MT = VerifierChaine("Donnez un moyen de transport : ");
+	string Nom = VerifierChaine("Donnez un nom de trajet : ");
+	TrajetSimple *unNouvSimp = new TrajetSimple(VD,VA,MT,Nom);
+	ListeT.AjouterElemAlpha(unNouvSimp);
+	cout<< "Le trajet simple nomme "<< Nom << " a ete ajoute au catalogue. " <<endl;
+
 }
 
 void Catalogue::AjouterTrajetCompose()
 // Algorithme :
 // Ajoute un trajet composé dans la liste des trajets
 {
-	char * NomC=new char[50];
-    cout << "Donnez le nom du trajet compose : " << endl;
-    cin >> NomC;
-    TrajetCompose *nouvelTrajComp = new TrajetCompose(NomC);
-    cout << "Veuillez ajouter au moins deux trajets simples : " << endl;
-    nouvelTrajComp->AjouterTrajetSimple();
-    nouvelTrajComp->AjouterTrajetSimple();
-    char input = '0';
+    string Nom = VerifierChaine("Donnez le nom du trajet compose : ");
+    TrajetCompose *nouvelTrajComp = new TrajetCompose(Nom,true);
+    cout << "Veuillez ajouter au moins deux  sous-trajets ! " << endl;
+    string etapePre;
+    string etapeSui;
+    string MT;
+    string NomST;
+    etapePre = VerifierChaine ("Donnez une ville de depart : ");
+    etapeSui = VerifierChaine ("Donnez une ville d'escale : ");
     do
     {
-    	cout << "Tapez 0 pour entrer un sous-trajet." << endl;
-    	cout << "Tapez 1 pour terminer." << endl;
-    	cin >> input;
-    	switch (input)
-        {	
-            case '0':
-            	nouvelTrajComp->AjouterTrajetSimple();
-            	break;
-            case '1':
-            	cout << "L'ajout d'un trajet compose est termine !" << endl;
-                break;
-        	default:
-            cout << "Choix invalide. Choisir l'une des valeurs entre 0 et 1" << endl;
-        }
-
-    } while (input != '1');
-
-	//ListeT.AjouterElem(nouvelTrajComp);
-	ListeT.AjouterElemAlpha(nouvelTrajComp);
-	delete [] NomC;
+		MT = VerifierChaine ("Donnez un moyen de transport : ");
+        NomST = VerifierChaine ("Donnez un nom de ce sous-trajet : ");
+		TrajetSimple* unNouvST = new TrajetSimple(etapePre,etapeSui,MT,NomST);
+		nouvelTrajComp->AjouterTrajetSimple(unNouvST);
+		etapePre = etapeSui;
+		etapeSui= VerifierChaine("Donnez une ville d'escale (ou tapez 0 pour terminer ce trajet) : ");
+    }
+    while (etapeSui != "0");
+    ListeT.AjouterElemAlpha(nouvelTrajComp);
+    cout<< "Le trajet compose nomme "<< Nom << " a ete ajoute au catalogue. " <<endl;
 }
 
 void Catalogue::Rechercher() const
 // Algorithme :
 // Permet de rechercher un trajet à partir d'une ville de départ et d'arrivé donnée par l'utilisateur
 {
-	char * VD=new char[50];
-    cout << "Donnez une ville de depart : " << endl;
-    cin >> VD;
-    char * VA=new char[50];
-    cout << "Donnez une ville d'arrivee : " << endl;
-    cin >> VA;
-
-    char * res;
+	
+     string VD = VerifierChaine("Donnez une ville de depart a chercher : ");
+     string VA = VerifierChaine("Donnez une ville d'arrivee a chercher : ");
+    string res;
     const Trajet * tmp;
     int token=0;
-    //cout << "Check" << endl;
     for (unsigned int i = 0; i<ListeT.getSize();i++)
 	{
-		//cout << "Check" << endl;
 		tmp=ListeT.AccederElem(i);
-		//cout << "Check" << endl;
 		res=tmp->Rechercher(VD, VA);
-		if (strcmp(res,"non")==0)
-		{
-			//cout << "Check" << endl;
-			delete [] res;
-		}
-		else
+		if (res.compare("non")!=0&&res.compare("VD")!=0)	
 		{
 			cout << "Le trajet " << res << " pourrait vous intéresser." << endl;
 			token++;
@@ -201,7 +169,45 @@ void Catalogue::Rechercher() const
 	}
 	if (token==0)
 		cout << "Desole, aucun trajet ne corespond à votre demande." << endl;
-
-    delete [] VD;
-	delete [] VA;
 }
+string Catalogue::VerifierChaine(string const& contenu, bool autoriseVide) const
+// Algorithme :
+// Verifie si une chaine de caractères est valide
+{
+    bool bonneSaisie;
+    string chaine = " ";
+    do
+    {	
+		bonneSaisie = true;
+        if(!contenu.empty())
+        {
+            cout << contenu << flush;
+	    //Afficher le contenu avant la saisie
+        }
+        getline(cin, chaine);
+        if(cin.eof())
+	//premier cas de figure: on est a la fin du fichier (EOF)
+        {
+            cout << endl << "La fin du flux est atteinte. Veuillez saisir une nouvelle chaine !" << endl;
+            cin.clear();
+            bonneSaisie = false;
+        }
+        else if(!autoriseVide && chaine.empty())
+        {
+	//deuxieme cas de figure: la chaine est vide
+            cout << "Veuillez saisir une chaine non vide !" << endl;
+            bonneSaisie = false;
+        }
+	else if(cin.fail())
+        {
+	//troisieme cas de figure: l'entree n'est pas de type string
+            cout << endl << "Lecture invalide. Veuillez saisir une nouvelle chaine !" << endl;
+            cin.clear();
+            bonneSaisie = false;
+        }
+
+    }
+    while(!bonneSaisie);
+    return chaine;
+} //----- Fin de lireChaine
+

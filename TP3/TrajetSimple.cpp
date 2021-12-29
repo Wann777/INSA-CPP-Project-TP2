@@ -42,60 +42,57 @@ string TrajetSimple::getDescription () const
 // Retourne une chaine de caracteres qui decrit les infos de trajet
 // chaque element de trajet se separe par un ,
 
-	return "S-" + convertirChar(NomTrajet) +":" +convertirChar(VilleDepart)  + ","
-	       	+ convertirChar(VilleArrive)  +	","+ convertirChar(MoyenDeTransport)+",";
+	return "S-" + NomTrajet +":" + VilleDepart  + ","
+	       	+ VilleArrive  +	","+ MoyenDeTransport+",";
 }	
 
-/*string TrajetSimple::convertirChar (const char* unPtrChar)const
-{
-	string s(unPtrChar);
-	return s;
-}*/
-char * TrajetSimple::Rechercher(const char * VD, const char * VA) const
+const string TrajetSimple::Rechercher(const string& VD, const string& VA) const
 // Algorithme :
 //  Vérifie si la ville de départ coresponds à VD et la ville d'arrivée à VA
-//  Si oui, retourne le nom du trajet, si non, retourne 'non'
+//  Si oui, retourne le nom du trajet, 
+// si oui pour la ville de depart mais non pour ville d'arrivee, retourne 'VD'
+// Si non les 2, retourne 'non'
 {
-    if (strcmp(VD,VilleDepart)==0 && strcmp(VA,VilleArrive)==0)
-        return NomTrajet;
-    char * tmp=new char[4];
-    strcpy(tmp,"non");
-    return tmp;
+    if (VilleDepart.compare(VD)==0)
+    {
+		if (VilleArrive.compare(VA)==0) return NomTrajet;
+		else return "VD";
+    }
+    return "non";
 }
 
-char * TrajetSimple::getVilleDepart() const
+const string& TrajetSimple::getVilleDepart() const
 {
     return VilleDepart;
 }
 
-char * TrajetSimple::getVilleArrive() const
+const string& TrajetSimple::getVilleArrive() const
 {
     return VilleArrive;
 }
 
-char * TrajetSimple::getNom() const
+const string& TrajetSimple::getNom() const
 {
     return NomTrajet;
 }
 
-char * TrajetSimple::getMoyen() const
+const string& TrajetSimple::getMoyen() const
 {
     return MoyenDeTransport;
 }
 
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple )
+TrajetSimple::TrajetSimple ( const TrajetSimple & unTrajetSimple ) :
+VilleDepart(unTrajetSimple.VilleDepart), VilleArrive(unTrajetSimple.VilleArrive)
+, MoyenDeTransport(unTrajetSimple.MoyenDeTransport),
+NomTrajet(unTrajetSimple.NomTrajet)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
 #endif
-    MoyenDeTransport = new char[strlen(unTrajetSimple.MoyenDeTransport)+1];
-    NomTrajet = new char[strlen(unTrajetSimple.NomTrajet)+1];
-    strcpy(MoyenDeTransport,unTrajetSimple.MoyenDeTransport);
-    strcpy(NomTrajet,unTrajetSimple.NomTrajet);
 } //----- Fin de TrajetSimple (constructeur de copie)
 
 TrajetSimple::TrajetSimple (const string& uneDescription)
@@ -108,44 +105,26 @@ TrajetSimple::TrajetSimple (const string& uneDescription)
     stringstream ss;
     ss.str(uneDescription);
     string type;
-    string nT, vD, vA, mT;
 
     getline(ss,type,'-');
-    getline(ss,nT,':');
-    getline(ss,vD,',');
-    getline(ss,vA,',');
-    getline(ss,mT,',');
+    getline(ss,NomTrajet,':');
+    getline(ss,VilleDepart,',');
+    getline(ss,VilleArrive,',');
+    getline(ss,MoyenDeTransport,',');
 
-    VilleDepart = new char[vD.length()+1];
-    VilleArrive = new char[vA.length()+1];
-    MoyenDeTransport = new char[mT.length()+1];
-    NomTrajet = new char[nT.length()+1];
-
-
-    strcpy(VilleDepart,vD.c_str());
-    strcpy(VilleArrive,vA.c_str());
-    strcpy(MoyenDeTransport,mT.c_str());
-    strcpy(NomTrajet,nT.c_str());
 
 } //----- Fin de TrajetSimple (const string&)
 
 
-TrajetSimple::TrajetSimple (const char * VD, const char * VA, const char * MT, const char * Nom)
+TrajetSimple::TrajetSimple ( const string& VD, const string& VA, 
+const string& MT, const string& Nom): VilleDepart(VD), VilleArrive(VA),
+MoyenDeTransport(MT), NomTrajet(Nom)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
-    VilleDepart = new char[strlen(VD)+1];
-    VilleArrive = new char[strlen(VA)+1];
-    MoyenDeTransport = new char[strlen(MT)+1];
-    NomTrajet = new char[strlen(Nom)+1];
-
-    strcpy(VilleDepart,VD);
-    strcpy(VilleArrive,VA);
-    strcpy(MoyenDeTransport,MT);
-    strcpy(NomTrajet,Nom);
 } //----- Fin de TrajetSimple
 
  
@@ -156,19 +135,10 @@ TrajetSimple::~TrajetSimple ( )
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
-    delete [] VilleDepart;
-    delete [] VilleArrive;
-    delete [] MoyenDeTransport;
-    delete [] NomTrajet;
 } //----- Fin de ~TrajetSimple
 
 
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-std::string TrajetSimple::convertirChar (const char* unPtrChar)const
-{
-        string s(unPtrChar);
-        return s;
-}
 

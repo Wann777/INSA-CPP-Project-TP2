@@ -40,17 +40,19 @@ int main ()
 // Algorithme :
 //
 {
-  string s = "S-TS1:Lyon,Bordeaux,Train,";
+  /*string s = "S-TS1:Lyon,Bordeaux,Train,";
   TrajetSimple t1(s);
- // t1.Afficher();
- std::cout<< t1.getDescription()<<endl; 
-  string c = "C-TC2:TS2-1:Lyon,Bordeaux,Train,TS2-2:Toulouse,TGV,TS2-3:Nice,TER,";
-  TrajetCompose t2(c);
-  std::cout<< t2.getDescription()<<endl;  
- // t1.Afficher();
+ //t1.Afficher();
+ //std::cout<< t1.getDescription()<<endl; 
+ string c = "C-TC2:TS2-1:Lyon,Bordeaux,Train,TS2-2:Toulouse,TGV,TS2-3:Nice,TER,";
+ TrajetCompose t2(c);
+  //std::cout<< t2.getDescription()<<endl;  
+ t1.Afficher();
  t2.Afficher();
- // Catalogue c;
- // c.Menu();
-  return 0;
+ //std::cout<< t1.Rechercher("Lyon","Bordeau") <<endl;
+ //std::cout<< t2.Rechercher("Lyon","Nancy") <<endl;*/
+ Catalogue c;
+ c.Menu();
+ return 0;
 } //----- fin de main
 

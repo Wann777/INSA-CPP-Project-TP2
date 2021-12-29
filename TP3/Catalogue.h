@@ -13,7 +13,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajet.h"
-
+#include <string>
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -77,7 +77,14 @@ protected:
      // Mode d'emploi :
     // Service qui permet de ajouter un trajet compose entre deux villes,
     // Contrat :
-
+	
+    std::string VerifierChaine (std::string const& contenu = "", bool autoriseVide = false) const;
+    // Mode d'emploi :
+    // Service qui lit, verifie et retourne une nouvelle ligne sur l'entree
+    // contenu : a afficher a l'utilisateur avant la saisie de la chaine.
+    // autoriseVide : si false, une chaine vide a l'entree n'est pas autorisee 
+    // Contrat :
+    // Rien
 //----------------------------------------------------- Attributs protégés
     ListeTrajet ListeT;
 };

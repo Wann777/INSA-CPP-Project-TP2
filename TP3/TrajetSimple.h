@@ -51,30 +51,30 @@ public:
     // Contrat: 
     // un trajet valide
 
-    char * Rechercher(const char * VD, const char * VA) const;
+    const string Rechercher(const string& VD, const string& VA) const;
     // Mode d'emploi :
     //  Service permettant de vérifier si la ville de départ du trajet est la même
     //  que VD passée en paramètre et si la ville d'arrivée est la même
     //  que VA passée en paramètre
     // Contrat :
     //
-    char * getVilleDepart() const;
+    const string& getVilleDepart() const;
     // Mode d'emploi :
     //  Service permettant de retourner la ville de depart du trajet
     // Contrat :
     //
-    char * getVilleArrive() const;
+    const string& getVilleArrive() const;
     // Mode d'emploi :
     //  Service permettant de retourner la ville d'arrivee du trajet
     // Contrat :
     //
-     char * getNom() const;
+     const string& getNom() const;
     // Mode d'emploi :
     //  Service permettant de retourner le nom du trajet
     // Contrat :
     //
 
-      char * getMoyen() const;
+     const string& getMoyen() const;
     // Mode d'emploi :
     //  Service permettant de retourner le moyen de transport du trajet
     // Contrat :
@@ -95,13 +95,15 @@ public:
     //  qui contient des infos de trajet
     //  Contrat: description est une chaine de caracteres
 
-    TrajetSimple (const char * VD, const char * VA, const char * MT, const char * Nom);
-    // Mode d'emploi :
+
+    TrajetSimple ( const std::string& VD, const std::string& VA, const std::string& MT, const std::string&Nom );
+// Mode d'emploi :
     //  Permet d'initialiser un trajet simple à partir d'une ville de départ passée
     //  en paramètre (VD), d'une ville d'arrivée passée en paramètre (VA), d'un moyen
     //  de transport passé en paramètre (MT) et d'un com de trajet passé en paramètre (Nom)
     // Contrat :
     //
+
 
     virtual ~TrajetSimple ( );
     // Mode d'emploi :
@@ -113,13 +115,12 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-string convertirChar (const char* unPtrChar)const;
 
 //----------------------------------------------------- Attributs protégés
-    char * VilleDepart;
-    char * VilleArrive;
-    char * MoyenDeTransport;
-    char * NomTrajet;
+    string VilleDepart;
+    string VilleArrive;
+    string MoyenDeTransport;
+    string NomTrajet;
 
 };
 

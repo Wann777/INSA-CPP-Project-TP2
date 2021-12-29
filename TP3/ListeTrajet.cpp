@@ -49,12 +49,6 @@ void ListeTrajet::AjouterElem (Trajet* unTrajet)
 		}
 		tmp->setSuiv(nouveauMaill);
 	}
-	//else
-	//{
-		//nouveauMaill->setSuiv(racine);
-		//racine = nouveauMaill;
-	//}
-	
 	++taille;
 }	//---Fin de methode AjouterElem
 
@@ -206,12 +200,12 @@ int ListeTrajet::Comparer ( Trajet* t1, Trajet* t2) const
 // Note:  si t1 et t2 sont les trajets composes, on compare
 // la ville de depart du premier sous trajet
 // et la ville d'arrivee du dernier sous trajet
-	int compareDep = strcmp(t1->getVilleDepart(),t2->getVilleDepart());
+	int compareDep = (t1->getVilleDepart()).compare(t2->getVilleDepart());
 	if (compareDep < 0) return -1;
 	if (compareDep >0) return 1;
 	else
 	{
-		int compareArriv = strcmp(t1->getVilleArrive(),t2->getVilleArrive());
+		int compareArriv = (t1->getVilleArrive()).compare(t2->getVilleArrive());
 		if (compareArriv < 0) return -1;
 	        if (compareArriv >0) return 1;
 		else return 0;

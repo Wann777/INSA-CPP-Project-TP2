@@ -40,30 +40,30 @@ public:
     //  Permet d'afficher tout les trajets simples du trajet composé
     // Contrat :
     //
-    void AjouterTrajetSimple();
+    void AjouterTrajetSimple(TrajetSimple* unTrajSimp);
     // Mode d'emploi :
-    //  Permet d'ajouter un trajet simple dans la liste de trajets
+    //  Permet d'ajouter un sous-trajet simple dans la liste de trajets
     // Contrat :
     //
-    char * Rechercher(const char * VD, const char * VA) const;
+    const std::string Rechercher(const std::string& VD, const std::string& VA) const;
     // Mode d'emploi :
     //  Permet de rechercher si ce trajet composé a pour trajet de départ VD
     //  passé en paramètre et comme ville d'arrivée ou d'escale VA
     //  passée en paramètre
     // Contrat :
     //
-    char * getVilleDepart() const;
+    const std::string& getVilleDepart() const;
     // Mode d'emploi :
     //  Service permettant de retourner la ville de départ du trajet
     // Contrat :
     //
-    char * getVilleArrive() const;
+    const std::string& getVilleArrive() const;
     // Mode d'emploi :
     //  Service permettant de retourner la ville d'arrivée du trajet composé
     //  cad la ville d'arrivee du dernier sous trajet
     // Contrat :
     //
-    char * getNom() const;
+    const std::string& getNom() const;
     // Mode d'emploi :
     //  Service permettant de retourner le nom du trajet composé
 
@@ -91,9 +91,10 @@ public:
     //  qui contient des infos de trajet
     //  Contrat: description est une chaine de caracteres
 
-    TrajetCompose (const char * Nom);
+    TrajetCompose (const std::string& Nom, bool activerNom);
     // Mode d'emploi :
-    //
+    //Permet d'initialiser un trajet compose à partir d'un nom de trajet donne
+    // Le parametre activerNom sert a se distinguer du constructeur TrajetCompose (const string& uneDescription);
     // Contrat :
     //
 
@@ -107,10 +108,9 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-string convertirChar (const char* unPtrChar)const;
 
 //----------------------------------------------------- Attributs protégés
-    char * nomDeTrajet;
+    string nomDeTrajet;
     ListeTrajet sousTrajets;
 
 };
