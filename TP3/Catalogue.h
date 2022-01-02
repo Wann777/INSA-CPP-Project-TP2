@@ -13,6 +13,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "ListeTrajet.h"
+#include "Filtre.h"
 #include <string>
 //------------------------------------------------------------- Constantes
 
@@ -77,14 +78,51 @@ protected:
      // Mode d'emploi :
     // Service qui permet de ajouter un trajet compose entre deux villes,
     // Contrat :
-	
-    std::string VerifierChaine (std::string const& contenu = "", bool autoriseVide = false) const;
+    
+    void Charger ( );
+    // Mode d'emploi :
+    // Service qui permet d'ajouter au catalogue des trajets à partir d'un fichier
+    // Propose à l'utilisateur plusieurs filtres lors du chargement : Sans Critere, Type, Ville,
+    //Intervalle.
+ 
+    // Contrat :
+    
+    
+    void Sauvegarder ( ) const;
+    // Mode d'emploi :
+    // Service qui permet de sauvegarder dans un fichier les trajets courants du Catalogue.
+    // Ce fichier serait un fichier existant
+    // ou un nouveau.
+    // Propose à l'utilisateur plusieurs filtres lors de la sauvegarde: Sans Critere, Type, Ville,
+    //Intervalle.
+   
+    // Contrat :
+   
+    std::string VerifierChaine (bool autoriseVide = false) const;
     // Mode d'emploi :
     // Service qui lit, verifie et retourne une nouvelle ligne sur l'entree
-    // contenu : a afficher a l'utilisateur avant la saisie de la chaine.
     // autoriseVide : si false, une chaine vide a l'entree n'est pas autorisee 
     // Contrat :
     // Rien
+    unsigned int VerifierEntier() const;
+    // Mode d'emploi :
+    // Service qui lit, verifie et retourne un entier positif sur l'entree 
+    // Contrat :
+    // Rien
+    void ChoisirFiltre (Filtre*& unPtrFiltre, std::string nomFicACharger = " ") const;
+    // Mode d'emploi :
+    // Service qui instancie dynamiquement un 
+    //filtre demande par l'utilisateur
+    // 
+    // Contrat :
+    // Rien
+    unsigned int CompterLignes(std::string const& nomFic) const;
+    // Mode d'emploi :
+    // Retourne le nombre de lignes dans le fichier
+    // nomFic
+    // Contrat :
+    // Rien
+
 //----------------------------------------------------- Attributs protégés
     ListeTrajet ListeT;
 };
