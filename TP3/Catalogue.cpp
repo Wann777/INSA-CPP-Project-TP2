@@ -161,7 +161,7 @@ void Catalogue::AjouterTrajetCompose()
     {
 		cout <<"Donnez un moyen de transport : "<<endl;
 		MT = VerifierChaine ();
-		cout <<"Donnez un nom de trajet : "<<endl;
+		cout <<"Donnez un nom de sous-trajet : "<<endl;
         NomST = VerifierChaine ();
 		TrajetSimple* unNouvST = new TrajetSimple(etapePre,etapeSui,MT,NomST);
 		nouvelTrajComp->AjouterTrajetSimple(unNouvST);
@@ -228,19 +228,19 @@ void Catalogue::Charger ( )
         if(found != string::npos)
         {
 			
-            cout << "Nom de fichier ne peut pas contenir / !" << endl;
+            cerr << "Nom de fichier ne peut pas contenir / !" << endl;
             unFicValide = false;
         }
         
         ifstream ifsNomFic (nomFic.c_str());
         if (!ifsNomFic) 
 		{
-			cout << "Le fichier nomme " << nomFic << " n'existe pas ! "<<endl;
+			cerr << "Le fichier nomme " << nomFic << " n'existe pas ! "<<endl;
 			unFicValide = false;
 		}
 		else if (ifsNomFic.peek()==EOF)
 		{
-			cout << "Le fichier nomme " << nomFic << " est vide ! "<<endl;
+			cerr << "Le fichier nomme " << nomFic << " est vide ! "<<endl;
 			unFicValide = false;
 		}
 		ifsNomFic.close();	  
@@ -286,14 +286,19 @@ void Catalogue::Charger ( )
                 ++nomTrajChar;
                  cout << "Le trajet ayant la description " << unDesTraj << " a ete charge dans le Catalogue ! " << endl;
             }
-            //delete unPtrTraj;
+            else if (unPtrTraj !=NULL && !unPtrFil->Valide(*unPtrTraj)) 
+            {
+				//en cas de non valide, on libère la zone de mémoire 
+				delete unPtrTraj;
+			}
+            
         }
         ifsNomFic.close();
         cout << nomTrajChar <<" trajet" << (nomTrajChar > 1 ?"s ont ete sauvegardes dans le Catalogue." :" a ete sauvegarde dans le Catalogue.") << endl;
     }
     else
     {
-        cout << "La lecture de ce fichier n'est pas autorisee !"<< endl;
+        cerr << "La lecture de ce fichier n'est pas autorisee !"<< endl;
     }
     delete unPtrFil;
 }
@@ -335,7 +340,7 @@ void Catalogue::Sauvegarder ( ) const
         if(found != string::npos)
         {
 			
-            cout << "Nom de fichier ne peut pas contenir / !" << endl;
+            cerr << "Nom de fichier ne peut pas contenir / !" << endl;
             unFicValide = false;
         }
     }
@@ -412,7 +417,7 @@ void Catalogue::Sauvegarder ( ) const
                 }
                 else
                 {
-                    cout << "Une erreur s'est produite :( " << endl;
+                    cerr << "Une erreur s'est produite :( " << endl;
                 }
             }
         }
@@ -421,7 +426,7 @@ void Catalogue::Sauvegarder ( ) const
     }
     else
     {
-        cout << "L'ecriture de ce fichier n'est pas autorisee !"<< endl;
+        cerr << "L'ecriture de ce fichier n'est pas autorisee !"<< endl;
     }
     delete unPtrFil;
 }
@@ -440,23 +445,32 @@ string Catalogue::VerifierChaine(bool autoriseVide) const
         if(cin.eof())
 	//premier cas de figure: on est a la fin du fichier (EOF)
         {
-            cout << endl << "La fin du flux est atteinte. Veuillez saisir une nouvelle chaine !" << endl;
+            cerr << endl << "La fin du flux est atteinte. Veuillez saisir une nouvelle chaine !" << endl;
             cin.clear();
             bonneSaisie = false;
         }
         else if(!autoriseVide && chaine.empty())
         {
 	//deuxieme cas de figure: la chaine est vide
-            cout << "Veuillez saisir une chaine non vide !" << endl;
+            cerr << "Veuillez saisir une chaine non vide !" << endl;
             bonneSaisie = false;
         }
-	else if(cin.fail())
+		else if(cin.fail())
         {
 	//troisieme cas de figure: l'entree n'est pas de type string
-            cout << endl << "Lecture invalide. Veuillez saisir une nouvelle chaine !" << endl;
+            cerr << endl << "Lecture invalide. Veuillez saisir une nouvelle chaine !" << endl;
             cin.clear();
             bonneSaisie = false;
         }
+        size_t found = chaine.find(":");
+        if(found != string::npos)
+        {
+	//4e cas de figure: l'entree ne peut pas contenir :
+			
+            cerr << "La chaine ne peut pas contenir le deux-points. Veuillez saisir une nouvelle chaine !" << endl;
+            bonneSaisie= false;
+        }
+     
 
     }
     while(!bonneSaisie);
@@ -476,20 +490,20 @@ unsigned int Catalogue::VerifierEntier() const
         if(cin.eof())
 	//premier cas de figure: on est a la fin du fichier (EOF)
         {
-            cout << endl << "La fin du flux est atteinte. Veuillez saisir un nouvel entier  !" << endl;
+            cerr << endl << "La fin du flux est atteinte. Veuillez saisir un nouvel entier  !" << endl;
             cin.clear();
             bonneSaisie = false;
         }
         else if(ent<0)
         {
 	//deuxieme cas de figure: l'entier est negatif
-            cout << "Veuillez saisir un entier positif !" << endl;
+            cerr << "Veuillez saisir un entier positif !" << endl;
             bonneSaisie = false;
         }
 		else if(cin.fail())
         {
 	//troisieme cas de figure: l'entree n'est pas de type string
-            cout << endl << "Lecture invalide. Veuillez saisir un nouvel entier !" << endl;
+            cerr << endl << "Lecture invalide. Veuillez saisir un nouvel entier !" << endl;
             cin.clear();
             bonneSaisie = false;
         }
@@ -571,7 +585,7 @@ void Catalogue::ChoisirFiltre (Filtre*& unPtrFiltre, string nomFicACharger) cons
 						m = VerifierEntier();
 						if(n > m || n >= nbTraj)
 						{
-							cout << "Attention : l'intervalle [" << n << ";" << m << "] est invalide!" << endl;
+							cerr << "Attention : l'intervalle [" << n << ";" << m << "] est invalide!" << endl;
 							bonneSaisie = false;
 						}
 					}
