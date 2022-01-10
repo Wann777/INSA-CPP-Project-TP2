@@ -1,0 +1,4 @@
+S-TS1:Lyon,Bordeaux,Train,
+C-TC2:TS2-1:Lyon,Marseille,Bateau,TS2-2:Paris,Avion,
+S-TS3:Lyon,Paris,Auto,
+S-TS4:Paris,Lyon,Auto,
