@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Manager  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : $10/01/2022$
+    copyright            : (C) $2022$ par $tdang,esoulier$
+    e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
+//---------- Réalisation de la classe <Manager> (fichier Manager.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,14 +15,14 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Xxx.h"
+#include "Manager.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Xxx::Méthode ( liste des paramètres )
+// type Manager::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
@@ -30,7 +30,7 @@ using namespace std;
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Xxx & Xxx::operator = ( const Xxx & unXxx )
+Manager & Manager::operator = ( const Manager & unManager )
 // Algorithme :
 //
 {
@@ -38,34 +38,34 @@ Xxx & Xxx::operator = ( const Xxx & unXxx )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Xxx::Xxx ( const Xxx & unXxx )
+Manager::Manager ( const Manager & unManager )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Xxx>" << endl;
+    cout << "Appel au constructeur de copie de <Manager>" << endl;
 #endif
-} //----- Fin de Xxx (constructeur de copie)
+} //----- Fin de Manager (constructeur de copie)
 
 
-Xxx::Xxx ( )
+Manager::Manager ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Xxx>" << endl;
+    cout << "Appel au constructeur de <Manager>" << endl;
 #endif
-} //----- Fin de Xxx
+} //----- Fin de Manager
 
 
-Xxx::~Xxx ( )
+Manager::~Manager ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Xxx>" << endl;
+    cout << "Appel au destructeur de <Manager>" << endl;
 #endif
-} //----- Fin de ~Xxx
+} //----- Fin de ~Manager
 
 
 //------------------------------------------------------------------ PRIVE

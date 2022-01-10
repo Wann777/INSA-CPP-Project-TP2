@@ -1,14 +1,14 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Manager  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : $10/01/2022$
+    copyright            : (C) $2022$ par $tdang,esoulier$
+    e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( XXX_H )
-#define XXX_H
+//---------- Interface de la classe <Manager> (fichier Manager.h) ----------------
+#if ! defined ( MANAGER_H )
+#define MANAGER_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,12 +17,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
+// Rôle de la classe <Manager>
 //
 //
 //------------------------------------------------------------------------
 
-class Xxx : public Ancetre
+class Manager : public Ancetre
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,7 +36,7 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    Xxx & operator = ( const Xxx & unXxx );
+    Manager & operator = ( const Manager & unManager );
     // Mode d'emploi :
     //
     // Contrat :
@@ -44,19 +44,19 @@ public:
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Xxx ( const Xxx & unXxx );
+    Manager ( const Manager & unManager );
     // Mode d'emploi (constructeur de copie) :
     //
     // Contrat :
     //
 
-    Xxx ( );
+    Manager ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Xxx ( );
+    virtual ~Manager ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,7 +71,7 @@ protected:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <Manager>
 
-#endif // XXX_H
+#endif // MANAGER_H
 
