@@ -1,30 +1,33 @@
 /*************************************************************************
-                           Renseignement  -  description
+                           Lecteur  -  description
                              -------------------
     début                : $10/01/2022$
-    copyright            : (C) $2022$ par $tdang,esoulier$
+    copyright            : (C) $2021$ par $tdang,esoulier$
     e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
 
-//---------- Interface de la classe <Renseignement> (fichier Renseignement.h) ----------------
-#if ! defined ( RENSEIGNEMENT_H )
-#define RENSEIGNEMENT_H
-#include <string>
-using namespace std;
+//---------- Interface de la classe <Lecteur> (fichier Lecteur.h) ----------------
+#if ! defined ( LECTEUR_H )
+#define LECTEUR_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include "Renseignement.h"
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Renseignement>
+// Rôle de la classe <Lecteur>
 //
 //
 //------------------------------------------------------------------------
 
-class Renseignement
+class Lecteur
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -35,22 +38,35 @@ public:
     //
     // Contrat :
     //
-
-
-//-------------------------------------------- Constructeurs - destructeur
-    Renseignement ( const Renseignement & unRenseignement );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Renseignement ( string source, string destination, string heure);
+    Renseignement* LireLigne ( void );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Renseignement ( );
+
+//------------------------------------------------- Surcharge d'opérateurs
+    Lecteur & operator = ( const Lecteur & unLecteur );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+
+//-------------------------------------------- Constructeurs - destructeur
+    Lecteur ( const Lecteur & unLecteur );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
+
+    Lecteur ( const std::string& unNomFic );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual ~Lecteur ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -60,15 +76,12 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+	std::string nomFic;
+	std::ifstream ifsNomFic; //ouvrir le fichier nomme nomFic en lecture
 //----------------------------------------------------- Attributs protégés
-    string cible;
-    string referer;
-    string date;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Renseignement>
+//-------------------------------- Autres définitions dépendantes de <Lecteur>
 
-#endif // RENSEIGNEMENT_H
-
+#endif // Lecteur_H
