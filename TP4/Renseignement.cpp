@@ -13,6 +13,8 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <string>
+#include <sstream>
 
 //------------------------------------------------------ Include personnel
 #include "Renseignement.h"
@@ -22,13 +24,33 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Renseignement::Méthode ( liste des paramètres )
+const string Renseignement::getCible ()
+
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+    return cible;
+} //----- Fin de Méthode
 
+string& Renseignement::getReferer ()
 
+// Algorithme :
+//
+{
+    return referer;
+} //----- Fin de Méthode
+
+void Renseignement::getMoment()
+{
+    cout<<unMoment.date<<endl;
+    cout<<unMoment.mois<<endl;
+    cout<<unMoment.an<<endl;
+    cout<<unMoment.heure<<endl;
+    cout<<unMoment.minute<<endl;
+    cout<<unMoment.seconde<<endl;
+    cout<<unMoment.decalage<<endl;
+}
+    
 //------------------------------------------------- Surcharge d'opérateurs
 //Renseignement & Renseignement::operator = ( const Renseignement & unRenseignement )
 // Algorithme :
@@ -38,7 +60,7 @@ using namespace std;
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Renseignement::Renseignement ( const Renseignement & unRenseignement )
+/*Renseignement::Renseignement ( const Renseignement & unRenseignement )
 // Algorithme :
 //
 {
@@ -46,15 +68,16 @@ Renseignement::Renseignement ( const Renseignement & unRenseignement )
     cout << "Appel au constructeur de copie de <Renseignement>" << endl;
 #endif
 } //----- Fin de Renseignement (constructeur de copie)
+*/
 
-
-Renseignement::Renseignement ( string source, string destination, string heure) : cible(source), referer(destination), date(heure)
+Renseignement::Renseignement ( string source, string destination, string moment) : cible(source), referer(destination)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Renseignement>" << endl;
 #endif
+    this->makeMomentPrecis(moment);
 } //----- Fin de Renseignement
 
 
@@ -71,4 +94,16 @@ Renseignement::~Renseignement ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+void Renseignement::makeMomentPrecis (const string& moment)
+{
+    stringstream ss;
+    ss.str(moment);
+    getline (ss, unMoment.date, '/');
+    getline (ss, unMoment.mois, '/');
+    getline (ss, unMoment.an, ':');
+    getline (ss, unMoment.heure, ':');
+    getline (ss, unMoment.minute, ':');
+    getline (ss, unMoment.seconde, ' ');
+    getline (ss, unMoment.decalage, ']');
+}
 

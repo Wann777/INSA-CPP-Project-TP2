@@ -76,8 +76,8 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-	std::string nomFic;
-	std::ifstream ifsNomFic; //ouvrir le fichier nomme nomFic en lecture
+    std::string nomFic;
+    std::ifstream ifsNomFic; //ouvrir le fichier nomme nomFic en lecture
 //----------------------------------------------------- Attributs protégés
 
 };

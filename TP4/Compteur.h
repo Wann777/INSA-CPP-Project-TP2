@@ -1,42 +1,30 @@
 /*************************************************************************
-                           Renseignement  -  description
+                           Compteur  -  description
                              -------------------
-    début                : $10/01/2022$
-    copyright            : (C) $2022$ par $tdang,esoulier$
-    e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
+    début                : $DATE$
+    copyright            : (C) $YEAR$ par $AUTHOR$
+    e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Renseignement> (fichier Renseignement.h) ----------------
-#if ! defined ( RENSEIGNEMENT_H )
-#define RENSEIGNEMENT_H
-#include <string>
-using namespace std;
+//---------- Interface de la classe <Compteur> (fichier Compteur.h) ----------------
+#if ! defined ( COMPTEUR_H )
+#define COMPTEUR_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Renseignement.h"
+#include <map>
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-enum listeMois {Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec};
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Renseignement>
+// Rôle de la classe <Compteur>
 //
 //
 //------------------------------------------------------------------------
-struct MOMENT
-{
-    string date;
-    string mois;
-    string an;
-    string heure;
-    string minute;
-    string seconde;
-    string decalage;
-};
 
-
-class Renseignement
+class Compteur
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -47,25 +35,32 @@ public:
     //
     // Contrat :
     //
-    const string getCible();
-    string& getReferer();
-    void getMoment();
+    void Ajouter(Renseignement * r);
+    void Afficher(void);
 
 
-//-------------------------------------------- Constructeurs - destructeur
-    Renseignement ( const Renseignement & unRenseignement );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Renseignement ( string source, string destination, string moment);
+//------------------------------------------------- Surcharge d'opérateurs
+    //Compteur & operator = ( const Compteur & unCompteur );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Renseignement ( );
+
+//-------------------------------------------- Constructeurs - destructeur
+    //Compteur ( const Compteur & unCompteur );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
+
+    Compteur ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual ~Compteur ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -75,16 +70,14 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-    void makeMomentPrecis (const string& moment);
 
 //----------------------------------------------------- Attributs protégés
-    string cible;
-    string referer;
-    MOMENT unMoment;
+    typedef map<string,int> Tcompte;
+    Tcompte compteCibles;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Renseignement>
+//-------------------------------- Autres définitions dépendantes de <Compteur>
 
-#endif // RENSEIGNEMENT_H
+#endif // Compteur_H
 

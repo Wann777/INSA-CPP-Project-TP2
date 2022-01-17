@@ -15,7 +15,7 @@
 #include "Test.h"
 #include <string>
 #include <iostream>
-#include "Renseignement.h"
+#include "Manager.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -37,13 +37,28 @@
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
-int main ()
+int main (int argc, char *argv[])
 // Algorithme :
 //
 {
-  
- Lecteur l("test.log");
- Renseignement* r = l.LireLigne ();
- return 0;
+
+  //Lecteur l("test.log");
+  //Renseignement* r = l.LireLigne ();
+  //r = l.LireLigne ();
+  if (argc==1)
+  {
+    Manager m("test.log");
+    m.Execution();
+  }
+  else if (argc==2)
+  {
+    string option = argv[1];
+    cout << option << endl;
+    if (option == "-e"){
+      Manager m("test.log",true, false);
+      m.Execution();
+    }
+  }
+  return 0;
 } //----- fin de main
 

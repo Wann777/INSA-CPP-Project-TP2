@@ -19,7 +19,7 @@ using namespace std;
 #include <string>
 #include <sstream>
 //------------------------------------------------------------- Constantes
-
+#define LOCAL "http://intranet-if.insa-lyon.fr"
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
@@ -38,15 +38,25 @@ Renseignement* Lecteur::LireLigne( void )
 		getline (ifsNomFic,ligne);
 		ss.str(ligne);
 		getline (ss, inutile, '[');
-		getline (ss, date, ' ');				// on recupere la date
+		getline (ss, date, ']');				// on recupere la date
 		getline (ss, inutile, '/');
 		getline (ss, cible, ' ');				// on recupere la cible
+		
+		
 		getline (ss, inutile, '"');
 		getline (ss, inutile, '"');
 		getline (ss, referer, '"');				// on recupere le referer
-		Renseignement* unR = new Renseignement (cible, referer,date);
-		cout << cible << referer << date <<endl;
-		return unR;
+		std::size_t found = referer.find(LOCAL);
+		if (found!=std::string::npos)
+		{
+			referer.replace(referer.find(LOCAL),sizeof(LOCAL),"");
+		}
+		Renseignement* r = new Renseignement (cible, referer,date);
+		cout<<r->getCible()<<endl;
+		cout<<r->getReferer()<<endl;
+		//r->getMoment();
+		
+		return r;
 	}
 	return NULL;
 }

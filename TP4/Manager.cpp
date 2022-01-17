@@ -28,35 +28,50 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+void Manager::Execution(void)
+//Algorithme :
+{
+    Renseignement* r = lec->LireLigne ();
+    while(r != NULL)
+    {
+        compt->Ajouter(r);
+        r = lec->LireLigne ();
+    }
+    compt->Afficher();
+    
+} //----- Fin de Méthode
+
 
 //------------------------------------------------- Surcharge d'opérateurs
-Manager & Manager::operator = ( const Manager & unManager )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Manager::Manager ( const Manager & unManager )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Manager>" << endl;
-#endif
-} //----- Fin de Manager (constructeur de copie)
 
 
-Manager::Manager ( )
+
+Manager::Manager (string nomFic)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Manager>" << endl;
 #endif
+    lec = new Lecteur(nomFic);
+    compt = new Compteur();
+    optionE = false;
+    optionT = false;
 } //----- Fin de Manager
 
+Manager::Manager (string nomFic, bool opte, bool optt) : optionE(opte), optionT(optt)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur spécifique de <Manager>" << endl;
+#endif
+    lec = new Lecteur(nomFic);
+    compt = new Compteur();
+} //----- Fin de Manager
 
 Manager::~Manager ( )
 // Algorithme :

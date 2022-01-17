@@ -11,6 +11,11 @@
 #define MANAGER_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include <iostream>
+#include "Renseignement.h"
+#include "Lecteur.h"
+#include "Compteur.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -22,7 +27,7 @@
 //
 //------------------------------------------------------------------------
 
-class Manager : public Ancetre
+class Manager
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -33,24 +38,26 @@ public:
     //
     // Contrat :
     //
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Manager & operator = ( const Manager & unManager );
+    void Execution(void);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
 
+//------------------------------------------------- Surcharge d'opérateurs
+
+
 //-------------------------------------------- Constructeurs - destructeur
-    Manager ( const Manager & unManager );
-    // Mode d'emploi (constructeur de copie) :
+
+
+    Manager (string nomFic);
+    // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Manager ( );
+    Manager (string nomFic, bool opte, bool optt);
     // Mode d'emploi :
     //
     // Contrat :
@@ -66,6 +73,10 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
+    Lecteur * lec;
+    bool optionE;
+    bool optionT;
+    Compteur * compt;
 
 //----------------------------------------------------- Attributs protégés
 
