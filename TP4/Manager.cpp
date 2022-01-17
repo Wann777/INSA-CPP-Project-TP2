@@ -41,7 +41,7 @@ void Manager::Execution(void)
             ss.str(r->getCible());
             getline (ss, exten, '.');
             getline (ss, exten);
-            if(exten!="jpg" && exten!="css" && exten!="js")
+            if(exten!="jpg" && exten!="css" && exten!="js" && exten!="png")
             {
                 if(optionT)
                 {

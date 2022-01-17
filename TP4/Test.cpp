@@ -93,7 +93,7 @@ int main (int argc, char *argv[])
       ++i;
     }
   }
-  Manager m("test.log",optE, optT, heure);
+  Manager m("anonyme.log",optE, optT, heure);
   m.Execution();
   return 0;
 } //----- fin de main
