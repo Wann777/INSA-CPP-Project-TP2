@@ -57,7 +57,7 @@ public:
     // Contrat :
     //
 
-    Manager (string nomFic, bool opte, bool optt);
+    Manager (string nomFic, bool opte, bool optt, int h=0);
     // Mode d'emploi :
     //
     // Contrat :
@@ -77,6 +77,7 @@ protected:
     bool optionE;
     bool optionT;
     Compteur * compt;
+    int heure;
 
 //----------------------------------------------------- Attributs protégés
 

@@ -45,7 +45,7 @@ int main (int argc, char *argv[])
   //Lecteur l("test.log");
   //Renseignement* r = l.LireLigne ();
   //r = l.LireLigne ();
-  if (argc==1)
+  /*if (argc==1)
   {
     Manager m("test.log");
     m.Execution();
@@ -53,12 +53,48 @@ int main (int argc, char *argv[])
   else if (argc==2)
   {
     string option = argv[1];
-    cout << option << endl;
+    //cout << option << endl;
     if (option == "-e"){
       Manager m("test.log",true, false);
       m.Execution();
     }
   }
+  else if (argc==3)
+  {
+    string option = argv[1];
+    if (option == "-t"){
+      string heureString = argv[2];
+      int heure = std::stoi( heureString );
+      Manager m("test.log",false, true, heure);
+      m.Execution();
+    }
+  }
+  else if (argc==4)
+  {
+    string option1 = argv[1];
+    if (option1=="-e")
+  }*/
+  
+  bool optE=false, optT=false, optG=false;
+  int heure=0;
+  int i;
+  for(i=1;i<argc;++i)
+  {
+    string option = argv[i];
+    if(option == "-e")
+    {
+      optE=true;
+    }
+    else if(option == "-t")
+    {
+      optT=true;
+      string heureString = argv[i+1];
+      heure = std::stoi( heureString );
+      ++i;
+    }
+  }
+  Manager m("test.log",optE, optT, heure);
+  m.Execution();
   return 0;
 } //----- fin de main
 

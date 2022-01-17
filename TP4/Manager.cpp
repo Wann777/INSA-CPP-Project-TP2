@@ -34,7 +34,35 @@ void Manager::Execution(void)
     Renseignement* r = lec->LireLigne ();
     while(r != NULL)
     {
-        compt->Ajouter(r);
+        if(optionE)
+        {
+            string exten;
+            stringstream ss;
+            ss.str(r->getCible());
+            getline (ss, exten, '.');
+            getline (ss, exten);
+            if(exten!="jpg" && exten!="css" && exten!="js")
+            {
+                if(optionT)
+                {
+                    int heureLigne = std::stoi(r->getHeure());
+                    if (heure==heureLigne)
+                        compt->Ajouter(r);
+                }
+                else
+                    compt->Ajouter(r);
+            }
+        }
+        else if(optionT)
+        {
+            int heureLigne = std::stoi(r->getHeure());
+            if (heure==heureLigne)
+                compt->Ajouter(r);
+        }
+        else
+        {
+            compt->Ajouter(r);
+        }
         r = lec->LireLigne ();
     }
     compt->Trier();
@@ -63,7 +91,7 @@ Manager::Manager (string nomFic)
     optionT = false;
 } //----- Fin de Manager
 
-Manager::Manager (string nomFic, bool opte, bool optt) : optionE(opte), optionT(optt)
+Manager::Manager (string nomFic, bool opte, bool optt, int h) : optionE(opte), optionT(optt), heure(h)
 // Algorithme :
 //
 {

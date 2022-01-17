@@ -50,11 +50,13 @@ void Compteur::Afficher(void)
     Tcomptetrier::iterator debut, fin;
     debut = compteCiblesTrier.begin();
     fin = compteCiblesTrier.end();
-    while (debut != fin)
+    int nb = 0;
+    while (debut != fin && nb<10)
     {
-        cout << debut->first << endl;
-        cout << debut->second << endl;
+        cout << debut->second << " (" << debut->first << " hits)" << endl;
+        //cout << debut->second << endl;
         debut++;
+        nb++;
     }
 }
 

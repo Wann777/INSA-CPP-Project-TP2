@@ -50,6 +50,7 @@ public:
     const string getCible();
     string& getReferer();
     void getMoment();
+    const string getHeure();
 
 
 //-------------------------------------------- Constructeurs - destructeur

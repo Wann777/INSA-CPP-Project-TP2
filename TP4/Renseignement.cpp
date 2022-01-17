@@ -50,6 +50,14 @@ void Renseignement::getMoment()
     cout<<unMoment.seconde<<endl;
     cout<<unMoment.decalage<<endl;
 }
+
+const string Renseignement::getHeure ()
+
+// Algorithme :
+//
+{
+    return unMoment.heure;
+} //----- Fin de Méthode
     
 //------------------------------------------------- Surcharge d'opérateurs
 //Renseignement & Renseignement::operator = ( const Renseignement & unRenseignement )
