@@ -37,6 +37,7 @@ public:
     //
     void Ajouter(Renseignement * r);
     void Afficher(void);
+    void Trier(void);
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -74,6 +75,8 @@ protected:
 //----------------------------------------------------- Attributs protégés
     typedef map<string,int> Tcompte;
     Tcompte compteCibles;
+    typedef multimap<int,string,greater<int>> Tcomptetrier;
+    Tcomptetrier compteCiblesTrier;
 
 };
 

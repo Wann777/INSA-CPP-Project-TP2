@@ -37,6 +37,7 @@ void Manager::Execution(void)
         compt->Ajouter(r);
         r = lec->LireLigne ();
     }
+    compt->Trier();
     compt->Afficher();
     
 } //----- Fin de Méthode

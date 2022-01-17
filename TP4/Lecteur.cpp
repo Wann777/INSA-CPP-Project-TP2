@@ -52,8 +52,8 @@ Renseignement* Lecteur::LireLigne( void )
 			referer.replace(referer.find(LOCAL),sizeof(LOCAL),"");
 		}
 		Renseignement* r = new Renseignement (cible, referer,date);
-		cout<<r->getCible()<<endl;
-		cout<<r->getReferer()<<endl;
+		//cout<<r->getCible()<<endl;
+		//cout<<r->getReferer()<<endl;
 		//r->getMoment();
 		
 		return r;
