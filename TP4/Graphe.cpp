@@ -45,16 +45,16 @@ void Graphe::Ajouter(Renseignement * r)
 	string refAChercher = r->getReferer();
 	listeN.insert(cle);
 	listeN.insert(refAChercher);
+	refMap secondElem; // il s'agit de la structure map<string,int>
 	
 	//Etape 2: Ajouter le renseignement r dans la structure de donnees Tgraphe
-	Tgraphe::iterator estPresente;
-	
-	estPresente = logGraphe.find(cle);  //On cherche la cle dans la map
-    if(estPresente == logGraphe.end())
+	Tgraphe::iterator cleTrouvee;
+	refMap::iterator estPresent;
+	cleTrouvee = logGraphe.find(cle);  //On cherche la cle dans la map
+    if(cleTrouvee == logGraphe.end())
     {
 		//1e cas de figure: La cle n'est pas encore presente, on l'ajoute
 		string ref = r->getReferer();
-		refMap secondElem; // il s'agit de la structure map<string,int>
 		secondElem.insert(make_pair(ref,1));
 		logGraphe.insert(make_pair(cle,secondElem));
 		
@@ -65,21 +65,20 @@ void Graphe::Ajouter(Renseignement * r)
     {
 		//2e cas de figure: La cle est deja dans la map
 		//On doit verifier si le couple cible - referer est deja present
-		refMap::iterator estPresent;
-		refMap checkRef = logGraphe.find(cle)->second;
-		estPresent = checkRef.find(refAChercher);
-		if (estPresent == checkRef.end())
+		
+		secondElem = cleTrouvee->second;
+		estPresent = secondElem.find(refAChercher);
+		if (estPresent == secondElem.end())
 		{
 			//Si le referer n'est pas encore dans la map refMap, on insere le couple (ref,1)
-			checkRef.insert(make_pair(refAChercher,1));
-			cout<<"check"<<endl;
-		
+			(cleTrouvee->second).insert(make_pair(refAChercher,1));
+			
 		}
 		else 
 		{
 			//Si le referer est deja dans la map refMap, on augmente le nb d'occurences par 1
-			estPresent -> second= 1+estPresent -> second;
-			cout << estPresent ->first << estPresent -> second <<endl;
+			++((cleTrouvee->second).find(refAChercher)-> second); //ca marche!
+			//++(estPresent->second); ca ne marche pas
 		}
 	}
 		
@@ -130,8 +129,7 @@ void Graphe::CreerFicDot()
 				//On cherche la cible dans la liste des noeuds
 				Tnoeud::iterator posDes = listeN.find(destination);
 				int indDes = distance(listeN.begin(), posDes);
-				refMap secondElem = it -> second;
-				for (refMap::iterator itbis = secondElem.begin(); itbis != secondElem.end(); itbis ++)
+				for (refMap::iterator itbis = it->second.begin(); itbis != it->second.end(); itbis ++)
 				{
 					string source = itbis->first;
 					Tnoeud::iterator posSource = listeN.find(source);
