@@ -59,6 +59,7 @@ void Manager::Execution(void)
 						//On construit le graphe si -g est present
 						{
 							graph->Ajouter(r);
+							compt->Ajouter(r);
 						}
 						else 
 						{
@@ -72,6 +73,7 @@ void Manager::Execution(void)
 					if(optionG) //3e cas de figure: -e -g
 					{
 						graph->Ajouter(r);
+						compt->Ajouter(r);
 						
 					}
 					else //4e cas de figure: -e simplement
@@ -91,11 +93,15 @@ void Manager::Execution(void)
                     if (heure==heureLigne)
                     {
 						graph->Ajouter(r);
+						compt->Ajouter(r);
+
 					}
 				}
 				else //6e cas de figure: -g simplement
 				{
+					
 					graph->Ajouter(r);
+					compt->Ajouter(r);
 				}
 			}
 			else
@@ -118,18 +124,14 @@ void Manager::Execution(void)
 		}//- fin de l'optionE est fausse
 		r = lec->LireLigne ();  //On passe a la ligne suivante
 	} //-----Fin de WHILE
-    if (compt !=NULL)
+    if (optionG)
     {  
-		//Si l'optionG n'est pas activee, on fait le tri et afficher 10 hits
-        compt->Trier();
-		compt->Afficher();
-		
-    }
-    else 
-    {
-		//Sinon on cree un fichier pour construire le graphe
+    	//Si l'option T est activée, on cree un fichier pour construire le graphe
 		graph-> CreerFicDot();
-	}
+    }
+    //On fait le tri et afficher 10 hits
+    compt->Trier();
+	compt->Afficher();
     
     
 } //----- Fin de Execution
@@ -186,7 +188,8 @@ Manager::Manager (const string& nomFic, const string& nomGraphe, bool opte, bool
 	//Deuxieme cas de figure: L'option graphe est activee
 	else 
 	{
-		compt = NULL;
+		compt = new Compteur();
+		//compt = NULL;
 		graph = new Graphe (nomGraphe);
 	}
 	

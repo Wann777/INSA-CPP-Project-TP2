@@ -125,7 +125,7 @@ void Graphe::CreerFicDot()
 			for (Tgraphe::iterator it = logGraphe.begin(); it != logGraphe.end(); it ++)
 			{
 				string destination = it-> first;
-				cout<<destination<<endl;
+				//cout<<destination<<endl;
 				//On cherche la cible dans la liste des noeuds
 				Tnoeud::iterator posDes = listeN.find(destination);
 				int indDes = distance(listeN.begin(), posDes);
@@ -135,11 +135,12 @@ void Graphe::CreerFicDot()
 					Tnoeud::iterator posSource = listeN.find(source);
 					int indS = distance(listeN.begin(), posSource);
 					int nbHits = itbis ->second;
-					cout<< "node"<< indS << " -> node" << indDes << " [label=\"" << nbHits << "\"];" << endl;
+					//cout<< "node"<< indS << " -> node" << indDes << " [label=\"" << nbHits << "\"];" << endl;
 					ofsNomFic << "node"<< indS << " -> node" << indDes << " [label=\"" << nbHits << "\"];" << endl;
 				}// ---Fin de la creation des liens entre noeuds
 			}
 			ofsNomFic << "}" <<endl;
+			cout << "Dot-File " << nomFicDot << " generated" << endl;
 		}
 	}
 		
