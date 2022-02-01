@@ -16,6 +16,7 @@
 #include <string>
 #include <iostream>
 #include "Manager.h"
+#include <sstream>
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -40,61 +41,96 @@
 int main (int argc, char *argv[])
 // Algorithme :
 //
-{
+{  
+	bool optE=false, optT=false, optG=false, argValide = true;
+	string nomGraphe,nomFicLog;
+	string dernierArg = argv[argc - 1];
+	int heure=0;
+	int i;
+	// Premiere verification: le fichier donne est l'un de type .log
+	if (!dernierArg.empty())
+	{
+		//On récupere l'extension du fichier et verifie si c'est un .dot
+		string exten = getExtension (dernierArg);
+		if (exten != "log")
+		{
+			cerr<< "Nom de fichier log non valide !" << endl;
+			argValide = false;
+		}
+		else 
+		{
+			nomFicLog = argv[argc-1];
+		}
+		
+	}//--Fin de verification du nom de fichier .log
+		
+	// On fait un parcours du tableau des arguments
+	for(i=1;i<argc && argValide;++i)
+	{
+		string option = argv[i];
+		if (option.empty())
+		{
+			//Si la chaine est vide
+			argValide = false;
+			cerr << "Argument saisi non valide !" <<endl;
+		} //-- Fin de verification d'argument vide
+		else
+		{
+			if(i == argc - 1 && ((option == "-e")||(option == "-g")||(option == "-t")))
+			{
+				//1e contrainte: -g, -e, -t ne peuvent pas se situer a la fin de ligne
+				argValide = false;
+				cerr << "Paramètre non valide !" << endl;
+			}
+			else
+			{
+				if (option == "-g")
+				{
+					optG = true;
+					string exten = getExtension(argv[i+1]);
+					//On récupere l'extension du fichier et verifie si c'est un .dot
+					if (exten != "dot")
+					{
+						cerr<< "Nom de fichier pour le graphe non valide !" << endl;
+						argValide = false;
+					}
+					else 
+					{
+						//On recupere le nom du graphe
+						nomGraphe = argv[i+1];
+					}
+					++i;
+				} //-- Fin de l'option -g
+				else if (option == "-e")
+				{
+					optE = true;
+				}
+				else if (option == "-t")
+				{
+					optT = true;
+					// On recupere l'heure en parametre pour construire un intervalle
+					string heureString = argv[i+1];
+					heure = std::stoi( heureString );
+					if (heure < 0 || heure > 24)
+					{
+						cerr<< "Heure pour l'option -t non valide !" << endl;
+						argValide = false;
+					}
+					++i;
+				} //-- Fin de l'option -t
+			}//-- Fin de else quand -g -e -t sont au milieu 
+		}//-- Fin de else quand argv[i] est non vide
+	} //-- Fin de la boucle for
+	if (!argValide)
+	{
+		cerr<< "Lecture de commande echouee !" <<endl;
+	}
+	else
+	{
+		Manager m(nomFicLog,nomGraphe,optE, optT, optG, heure);
+		m.Execution();
+	}
+    return 0;
+}//-- Fin de MAIN
 
-  //Lecteur l("test.log");
-  //Renseignement* r = l.LireLigne ();
-  //r = l.LireLigne ();
-  /*if (argc==1)
-  {
-    Manager m("test.log");
-    m.Execution();
-  }
-  else if (argc==2)
-  {
-    string option = argv[1];
-    //cout << option << endl;
-    if (option == "-e"){
-      Manager m("test.log",true, false);
-      m.Execution();
-    }
-  }
-  else if (argc==3)
-  {
-    string option = argv[1];
-    if (option == "-t"){
-      string heureString = argv[2];
-      int heure = std::stoi( heureString );
-      Manager m("test.log",false, true, heure);
-      m.Execution();
-    }
-  }
-  else if (argc==4)
-  {
-    string option1 = argv[1];
-    if (option1=="-e")
-  }*/
-  
-  bool optE=false, optT=false, optG=false;
-  int heure=0;
-  int i;
-  for(i=1;i<argc;++i)
-  {
-    string option = argv[i];
-    if(option == "-e")
-    {
-      optE=true;
-    }
-    else if(option == "-t")
-    {
-      optT=true;
-      string heureString = argv[i+1];
-      heure = std::stoi( heureString );
-      ++i;
-    }
-  }
-  Manager m("anonyme.log",optE, optT, heure);
-  m.Execution();
-  return 0;
-} //----- fin de main
 

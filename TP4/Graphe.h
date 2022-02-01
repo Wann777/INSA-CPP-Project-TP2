@@ -1,36 +1,32 @@
 /*************************************************************************
-                           Manager  -  description
-                             -------------------
+                           Graphe  -  description
+                            -------------------
     début                : $10/01/2022$
     copyright            : (C) $2022$ par $tdang,esoulier$
     e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
 
-//---------- Interface de la classe <Manager> (fichier Manager.h) ----------------
-#if ! defined ( MANAGER_H )
-#define MANAGER_H
+//---------- Interface de la classe <Graphe> (fichier Graphe.h) ----------------
+#if ! defined ( Graphe_H )
+#define Graphe_H
 
 //--------------------------------------------------- Interfaces utilisées
-using namespace std;
-#include <string>
-#include <iostream>
-#include <sstream>
 #include "Renseignement.h"
-#include "Lecteur.h"
-#include "Compteur.h"
-#include "Graphe.h"
+#include <map>
+#include <string>
+#include <set>
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-
+typedef map<string,int> refMap;
 //------------------------------------------------------------------------
-// Rôle de la classe <Manager>
+// Rôle de la classe <Graphe>
 //
 //
 //------------------------------------------------------------------------
 
-class Manager
+class Graphe
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -41,33 +37,33 @@ public:
     //
     // Contrat :
     //
-    void Execution(void);
-    
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    void Ajouter(Renseignement * r);
+    void Afficher(void);
+    void CreerFicDot();
 
 
 //------------------------------------------------- Surcharge d'opérateurs
+    //Compteur & operator = ( const Compteur & unCompteur );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 
 //-------------------------------------------- Constructeurs - destructeur
+    //Compteur ( const Compteur & unCompteur );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
 
-
-    Manager (const string& nomFic);
+    Graphe (const std::string& nomGraphe);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    Manager (const string& nomFic, const string& nomGraphe, bool opte, bool optt, bool optg, int h);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    virtual ~Manager ( );
+    virtual ~Graphe ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -77,19 +73,19 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
- 
 
 //----------------------------------------------------- Attributs protégés
-   Lecteur * lec;
-    bool optionE;
-    bool optionT;
-    bool optionG;
-    Compteur * compt;
-    Graphe* graph;
-    int heure;
+ 	
+    	typedef map<string,refMap> Tgraphe;
+    	typedef set<string> Tnoeud;
+    	Tgraphe logGraphe;
+    	Tnoeud listeN;
+    	string nomFicDot;
+    	
+
 };
 
-//-------------------------------- Autres définitions dépendantes de <Manager>
-string getExtension (const string& nomFichier); //fonction ordinaire
-#endif // MANAGER_H
+//-------------------------------- Autres définitions dépendantes de <Compteur>
+
+#endif // Compteur_H
 

@@ -78,7 +78,7 @@ const string Renseignement::getHeure ()
 } //----- Fin de Renseignement (constructeur de copie)
 */
 
-Renseignement::Renseignement ( string source, string destination, string moment) : cible(source), referer(destination)
+Renseignement::Renseignement ( string dest, string sour, string moment) : cible(dest), referer(sour)
 // Algorithme :
 //
 {

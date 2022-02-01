@@ -30,7 +30,7 @@ using namespace std;
 //} //----- Fin de Méthode
 Renseignement* Lecteur::LireLigne( void )
 {
-	string ligne, cible, referer, date, inutile;
+	string ligne, date, inutile,cible,referer;
 	stringstream ss;
 	if(ifsNomFic.peek()!=EOF)
 	{
@@ -51,11 +51,7 @@ Renseignement* Lecteur::LireLigne( void )
 		{
 			referer.replace(referer.find(LOCAL),sizeof(LOCAL),"");
 		}
-		Renseignement* r = new Renseignement (cible, referer,date);
-		//cout<<r->getCible()<<endl;
-		//cout<<r->getReferer()<<endl;
-		//r->getMoment();
-		
+		Renseignement* r = new Renseignement ("/" + cible,"/" + referer,date);
 		return r;
 	}
 	return NULL;

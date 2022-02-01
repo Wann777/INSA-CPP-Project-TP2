@@ -31,16 +31,18 @@ void Compteur::Ajouter(Renseignement * r)
 {
     if(!r->getCible().empty())
     {
-        int present=compteCibles.count(r->getCible());
-        if(present==0)
+		Tcompte::iterator cleAChercher;
+		//On verifie si la cible est deja presentee dans la map
+		cleAChercher = compteCibles.find(r->getCible());
+        if(cleAChercher == compteCibles.end())
         {
+			//Si on ne trouve pas la cible r->getCible, on l'ajoute dans la map
             compteCibles.insert(make_pair(r->getCible(),1));
         }
-        else if (present==1)
+        else
         {
-            int occurences = compteCibles.find(r->getCible())->second;
-            compteCibles.erase(r->getCible());
-            compteCibles.insert(make_pair(r->getCible(),++occurences));
+			//Si la cle existe deja dans la map, on augmente le nb d'occurences par 1
+			++(cleAChercher->second);
         }
     }
 }
