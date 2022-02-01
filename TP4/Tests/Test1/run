@@ -1,1 +1,2 @@
-cat fichier.txt >sortie.txt
+../analog -g court.dot court.log
+
