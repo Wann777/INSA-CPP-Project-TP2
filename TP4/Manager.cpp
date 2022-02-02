@@ -32,6 +32,11 @@ void Manager::Execution(void)
 //Algorithme :
 {
     Renseignement* r = lec->LireLigne ();
+    if (r==NULL)
+	{
+		cerr << "Erreur d'ouverture / lecture du fichier log." << endl;
+		return;
+	}
     while(r != NULL)
     {
 		bool extenValide = true;

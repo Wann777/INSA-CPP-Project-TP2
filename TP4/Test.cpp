@@ -47,6 +47,7 @@ int main (int argc, char *argv[])
 	string dernierArg = argv[argc - 1];
 	int heure=0;
 	int i;
+	/*
 	// Premiere verification: le fichier donne est l'un de type .log
 	if (!dernierArg.empty())
 	{
@@ -63,6 +64,20 @@ int main (int argc, char *argv[])
 		}
 		
 	}//--Fin de verification du nom de fichier .log
+	*/
+	if (argc == 1)
+	{
+		//Si la chaine est vide
+		argValide = false;
+		cerr << "Aucun argument saisi !" <<endl;
+	} //-- Fin de verification d'argument vide
+
+	if(dernierArg == "-e" || dernierArg == "-g" || dernierArg == "-t")
+	{
+		//1e contrainte: -g, -e, -t ne peuvent pas se situer a la fin de ligne
+		argValide = false;
+		cerr << "Placement du fichier log invalide !" << endl;
+	}
 		
 	// On fait un parcours du tableau des arguments
 	for(i=1;i<argc && argValide;++i)
@@ -76,11 +91,19 @@ int main (int argc, char *argv[])
 		} //-- Fin de verification d'argument vide
 		else
 		{
-			if(i == argc - 1 && ((option == "-e")||(option == "-g")||(option == "-t")))
+			if (i == argc - 1 && option != "-e" && option != "-g" && option != "-t")
 			{
-				//1e contrainte: -g, -e, -t ne peuvent pas se situer a la fin de ligne
-				argValide = false;
-				cerr << "Paramètre non valide !" << endl;
+				//On récupere l'extension du fichier et verifie si c'est un .dot
+				string exten = getExtension (dernierArg);
+				if (exten != "log")
+				{
+					cerr<< "Nom de fichier log non valide !" << endl;
+					argValide = false;
+				}
+				else 
+				{
+					nomFicLog = argv[argc-1];
+				}
 			}
 			else
 			{
@@ -110,14 +133,19 @@ int main (int argc, char *argv[])
 					optT = true;
 					// On recupere l'heure en parametre pour construire un intervalle
 					string heureString = argv[i+1];
-					heure = std::stoi( heureString );
-					if (heure < 0 || heure > 24)
+					heure = std::atoi( argv[i+1] );
+					if (heure < 0 || heure > 24 || (heure==0 && heureString != "0"))
 					{
 						cerr<< "Heure pour l'option -t non valide !" << endl;
 						argValide = false;
 					}
 					++i;
 				} //-- Fin de l'option -t
+				else
+				{
+					cerr<< "Option non reconnue, fin du programme." << endl;
+					argValide = false;
+				}
 			}//-- Fin de else quand -g -e -t sont au milieu 
 		}//-- Fin de else quand argv[i] est non vide
 	} //-- Fin de la boucle for
