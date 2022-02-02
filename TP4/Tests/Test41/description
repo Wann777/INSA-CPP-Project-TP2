@@ -1,0 +1,1 @@
+Ce test permet de vérifier que le programme avec l'option "-e" ne prends en compte aucune ligne du fichier test.log (Toutes exclues par l'option -e)

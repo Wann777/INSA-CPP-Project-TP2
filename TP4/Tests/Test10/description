@@ -1,1 +1,1 @@
-Test de la sortie d'erreur, heure pour l'option t invalide (Pas un chiffre entré).
+Ce test permet de vérifier la production d'un fichier correct en sortie du programme testé sur un fichier court.log simple.
