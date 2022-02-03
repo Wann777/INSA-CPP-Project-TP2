@@ -49,7 +49,7 @@ public:
     const string& getCible();
     const string& getReferer();
     const string& getHeure();
-
+    int getDecalage (); 
 
 //-------------------------------------------- Constructeurs - destructeur
     Renseignement ( const Renseignement & unRenseignement );

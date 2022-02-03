@@ -1,2 +1,15 @@
 digraph {
+node0 [label = "/http://www.google.fr/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=0CDIQFjAB&url=http%3A%2F%2Fintranet-if.insa-lyon.fr%2Ftemps%2F&ei=_wxLUKCwEMaJhQe08oCYCw&usg=AFQjCNEWrHsRdIlhli_31qYl94w-yMCjpw&sig2=eTdZgqmz8aDAi5eiWxEP1g"];
+node1 [label = "/temps/4IF15.html"];
+node2 [label = "/temps/4IF16.html"];
+node3 [label = "/temps/images.jpg"];
+node4 [label = "/temps/java.js"];
+node5 [label = "/temps/style_emploi_du_temps.css"];
+node6 [label = "/temps/suivant.gif"];
+node0 -> node3 [label="1"];
+node2 -> node3 [label="1"];
+node2 -> node4 [label="2"];
+node1 -> node5 [label="1"];
+node2 -> node5 [label="2"];
+node2 -> node6 [label="3"];
 }

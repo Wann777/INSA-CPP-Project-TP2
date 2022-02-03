@@ -78,7 +78,7 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
- 
+ bool ComparerHeure (const int decalage, int heureCible);
 
 //----------------------------------------------------- Attributs protégés
    Lecteur * lec;

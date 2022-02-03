@@ -30,7 +30,7 @@ const string& Renseignement::getCible ()
 //
 {
     return cible;
-} //----- Fin de Méthode
+} //----- Fin de getCible
 
 const string& Renseignement::getReferer ()
 
@@ -38,7 +38,7 @@ const string& Renseignement::getReferer ()
 //
 {
     return referer;
-} //----- Fin de Méthode
+} //----- Fin de getReferer
 
 
 const string& Renseignement::getHeure ()
@@ -47,7 +47,20 @@ const string& Renseignement::getHeure ()
 //
 {
     return unMoment.heure;
-} //----- Fin de Méthode
+} //----- Fin de getHeure
+
+int Renseignement::getDecalage()
+{
+// Algorithme : Transformer le decalage horaire en nombre entier
+	string decal = unMoment.decalage;
+	int heure = std::stoi (decal.substr(1,2)); //extraction de l'heure
+	int minute = std::stoi (decal.substr(3,2));//extraction de minute
+	if (decal[0]=='+')
+	{ 
+		return heure + minute/60;
+	}
+	else return -(heure + minute/60);
+}
     
 //------------------------------------------------- Surcharge d'opérateurs
 //Renseignement & Renseignement::operator = ( const Renseignement & unRenseignement )

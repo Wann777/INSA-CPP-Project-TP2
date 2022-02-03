@@ -33,6 +33,11 @@ void Manager::Execution(void)
 // Verifier si un objet de type Renseignement est valide au niveau de l'extension ou l'heure de consultation
 // Si oui, ajouter cet objet dans les maps pour decompter le nombre de hits et creer le fichier .dot
 {
+	if(optionT) 
+    {
+	// Si l'option -t est activee, afficher l'avertissement sur le temps du hit
+		cout << "Warning : only hits between "<<heure<<"h and "<<heure+1<<"h have been taken into account"<<endl;
+	}
     Renseignement* r = lec->LireLigne ();
     if (r==NULL)
 	{
@@ -41,6 +46,12 @@ void Manager::Execution(void)
 	}
     while(r != NULL)
     {
+		//On recupere l'heure pour l'option -t
+		int heureLigne = std::stoi(r->getHeure());
+		int decal = r->getDecalage();
+		bool heureValide = ComparerHeure(decal,heureLigne);
+		
+		//On verifie l'extension des documents
 		bool extenValide = true;
         if(optionE) //l'option e est activee
         {
@@ -59,33 +70,27 @@ void Manager::Execution(void)
                 if(optionT) //1e cas de figure: -e -t
                 {
 				// Si l'option -t est activee, on verifie d'abord le temps du hit
-                    int heureLigne = std::stoi(r->getHeure());
-                    if (heure==heureLigne)
+				cout << "Warning : only hits between "<<heureLigne<<"h and "<<heureLigne+1<<"h have been taken into account"<<endl;
+                  
+                    if (heureValide)
                     {
+						compt->Ajouter(r);
 						if (optionG) //2e cas: -e -g -t
-						//On construit le graphe si -g est present
+						//On ajoute r dans le graphe si -g est present
 						{
 							graph->Ajouter(r);
-							compt->Ajouter(r);
+	
 						}
-						else 
-						{
-							//Sinon, on fait un decompte normal
-							compt->Ajouter(r);
-						}
+						
 					}
 				}
 				else
 				{
-					if(optionG) //3e cas de figure: -e -g
+					compt->Ajouter(r); //3e cas de figure: -e simplement
+					if(optionG) //4e cas de figure: -e -g
 					{
 						graph->Ajouter(r);
-						compt->Ajouter(r);
 						
-					}
-					else //4e cas de figure: -e simplement
-					{
-						compt->Ajouter(r);
 					}
 				}
 			}//--fin de VERIFICATION DE L'EXTENSION
@@ -96,12 +101,11 @@ void Manager::Execution(void)
 			{
 				if (optionT) //5e cas de figure: -g -t
 				{
-					int heureLigne = std::stoi(r->getHeure());
-                    if (heure==heureLigne)
+					
+					if (heureValide)
                     {
 						graph->Ajouter(r);
 						compt->Ajouter(r);
-
 					}
 				}
 				else //6e cas de figure: -g simplement
@@ -115,8 +119,7 @@ void Manager::Execution(void)
 			{
 				if (optionT) //7e cas de figure: -t simplement
 				{
-					int heureLigne = std::stoi(r->getHeure());
-					if (heure==heureLigne)
+					if (heureValide)
 					{
 						compt->Ajouter(r);
 					}
@@ -218,4 +221,16 @@ Manager::~Manager ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+ bool Manager::ComparerHeure (const int decalage, int heureCible)
+{
+	// Algorithme :
+	// Comparer l'heure saisie par l'utilisateur avec celle du hit 
+	// heure locale en France +0200
 
+	if (decalage != 2)
+    {
+		//si decalage n'est pas +0200
+		heureCible = heureCible - (decalage -2); //calculer heure actuelle en France
+	}
+	return heureCible == heure;
+}
