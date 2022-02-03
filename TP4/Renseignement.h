@@ -17,11 +17,10 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-enum listeMois {Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec};
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Renseignement>
-//
+// Transformer les documents dans le fichier .log en elements comme cible, referer et moment
 //
 //------------------------------------------------------------------------
 struct MOMENT
@@ -47,10 +46,9 @@ public:
     //
     // Contrat :
     //
-    const string getCible();
-    string& getReferer();
-    void getMoment();
-    const string getHeure();
+    const string& getCible();
+    const string& getReferer();
+    const string& getHeure();
 
 
 //-------------------------------------------- Constructeurs - destructeur

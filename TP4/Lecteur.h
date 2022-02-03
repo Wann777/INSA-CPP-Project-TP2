@@ -23,8 +23,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Lecteur>
-//
-//
+// Lire de fichier .log ligne par ligne et recuperer les informations utiles
 //------------------------------------------------------------------------
 
 class Lecteur
@@ -40,7 +39,8 @@ public:
     //
     Renseignement* LireLigne ( void );
     // Mode d'emploi :
-    //
+    // Lire une ligne du fichier log et renvoyer un pointeur vers l'objet de type 
+    // Renseignement qui est les infos du document
     // Contrat :
     //
 

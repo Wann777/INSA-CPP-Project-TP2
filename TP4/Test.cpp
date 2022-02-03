@@ -1,7 +1,7 @@
 /*************************************************************************
-                           Test  -  description
+                           Test -  description
                              -------------------
-    début                : $15/11/2021$
+    début                : $10/01/2022$
     copyright            : (C) $2021$ par $tdang,esoulier$
     e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
@@ -40,7 +40,7 @@
 //---------------------------------------------------- Fonctions publiques
 int main (int argc, char *argv[])
 // Algorithme :
-//
+// Faire la lecture de commande saisie par l'ultisateur 
 {  
 	bool optE=false, optT=false, optG=false, argValide = true;
 	string nomGraphe,nomFicLog;

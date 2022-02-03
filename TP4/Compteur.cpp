@@ -1,9 +1,9 @@
 /*************************************************************************
                            Compteur  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : $10/01/2022$
+    copyright            : (C) $2022$ par $tdang,esoulier$
+    e-mail               : $thanh.dang@insa-lyon.fr, erwan.soulier@insa-lyon.fr$
 *************************************************************************/
 
 //---------- Réalisation de la classe <Compteur> (fichier Compteur.cpp) ------------
@@ -29,6 +29,9 @@ using namespace std;
 //} //----- Fin de Méthode
 void Compteur::Ajouter(Renseignement * r)
 {
+//Algorithme :
+// Chercher la cible dans la map Tcompte en ultisant la methode find()
+
     if(!r->getCible().empty())
     {
 		Tcompte::iterator cleAChercher;
@@ -47,46 +50,43 @@ void Compteur::Ajouter(Renseignement * r)
     }
 }
 
-void Compteur::Afficher(void)
-{
-    Tcomptetrier::iterator debut, fin;
-    debut = compteCiblesTrier.begin();
-    fin = compteCiblesTrier.end();
-    int nb = 0;
-    while (debut != fin && nb<10)
-    {
-        cout << debut->second << " (" << debut->first << " hits)" << endl;
-        //cout << debut->second << endl;
-        debut++;
-        nb++;
-    }
-}
 
 void Compteur::Trier(void)
 {
+//Algorithme :
+// Parcourir la map et inverser chaque couple <string,int> pour obtenir une nouvelle map de type <int,string>
+// Le tri de l'ordre decroissant de hits est fait automatiquement
+// grace a un conteneur specifique map <int,string, greater <int>>
     Tcompte::iterator debut, fin;
     debut = compteCibles.begin();
     fin = compteCibles.end();
     while (debut != fin)
     {
         compteCiblesTrier.insert(make_pair(debut->second,debut->first));
-        //cout << debut->first << endl;
-        //cout << debut->second << endl;
         debut++;
     }
 }
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-/*Compteur & Compteur::operator = ( const Compteur & unCompteur )
-// Algorithme :
-//
+ostream & operator << (ostream & os,const Compteur &c)
 {
-} //----- Fin de operator =
-
+// Algorithme :
+// Parcourir la structure Tcomptetrier en utilisant les iterateurs
+// On s'arrete au 10e element et faire apparaitre leur nombre de hits a la sortie standard
+    Tcomptetrier::const_iterator it,debut,fin;
+    debut = c.compteCiblesTrier.begin();
+    fin = c.compteCiblesTrier.end();
+    int i;
+    for (it = debut, i=0; it!=fin && i < 10; ++it , ++i)
+    {
+        os << it->second << " (" << it->first << " hits)" << endl;
+    }
+    return os;
+}
 
 //-------------------------------------------- Constructeurs - destructeur
-Compteur::Compteur ( const Compteur & unCompteur )
+/*Compteur::Compteur ( const Compteur & unCompteur )
 // Algorithme :
 //
 {

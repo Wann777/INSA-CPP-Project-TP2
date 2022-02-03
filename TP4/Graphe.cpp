@@ -31,15 +31,10 @@ using namespace std;
 //} //----- Fin de Méthode
 void Graphe::Ajouter(Renseignement * r)
 {
-// Algorithme :
-//
-//
-
-
-
+// Algorithme : Etape par etape
 
 	// Etape 1: Ajouter la cible et le referer dans la liste de Noeuds
-	// le set nous aide a supprimer les doublons
+	// le conteneur set nous aide a supprimer les doublons
 	
 	string cle = r->getCible();
 	string refAChercher = r->getReferer();
@@ -86,10 +81,12 @@ void Graphe::Ajouter(Renseignement * r)
 
 void Graphe::CreerFicDot()
 {
-// Algorithme :
-//
-//
-
+// Algorithme : 
+// Parcourir la map globale, qui est de type map <string, map>
+// Pour chaque couple dans Tgraphe, on va dans son second element 
+// et parcourir la deuxiemie map de type <string, int>
+// pour recuperer les referers et les nombres de hits
+// Renvoyer un fichier .dot qui sert a creer l'image du graphe
 
 
 	// Etape 1: Verification du fichier de l'entree
@@ -125,7 +122,6 @@ void Graphe::CreerFicDot()
 			for (Tgraphe::iterator it = logGraphe.begin(); it != logGraphe.end(); it ++)
 			{
 				string destination = it-> first;
-				//cout<<destination<<endl;
 				//On cherche la cible dans la liste des noeuds
 				Tnoeud::iterator posDes = listeN.find(destination);
 				int indDes = distance(listeN.begin(), posDes);
@@ -135,7 +131,6 @@ void Graphe::CreerFicDot()
 					Tnoeud::iterator posSource = listeN.find(source);
 					int indS = distance(listeN.begin(), posSource);
 					int nbHits = itbis ->second;
-					//cout<< "node"<< indS << " -> node" << indDes << " [label=\"" << nbHits << "\"];" << endl;
 					ofsNomFic << "node"<< indS << " -> node" << indDes << " [label=\"" << nbHits << "\"];" << endl;
 				}// ---Fin de la creation des liens entre noeuds
 			}

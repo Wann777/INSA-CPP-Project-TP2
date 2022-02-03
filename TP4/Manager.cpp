@@ -30,6 +30,8 @@ using namespace std;
 
 void Manager::Execution(void)
 //Algorithme :
+// Verifier si un objet de type Renseignement est valide au niveau de l'extension ou l'heure de consultation
+// Si oui, ajouter cet objet dans les maps pour decompter le nombre de hits et creer le fichier .dot
 {
     Renseignement* r = lec->LireLigne ();
     if (r==NULL)
@@ -136,7 +138,7 @@ void Manager::Execution(void)
     }
     //On fait le tri et afficher 10 hits
     compt->Trier();
-	compt->Afficher();
+	cout<<*compt;
     
     
 } //----- Fin de Execution
@@ -163,7 +165,7 @@ string getExtension (const string& nomFichier)
 
 Manager::Manager (const string& nomFic)
 // Algorithme :
-//
+// Constructeur par defaut
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Manager>" << endl;
@@ -177,24 +179,23 @@ Manager::Manager (const string& nomFic)
 
 Manager::Manager (const string& nomFic, const string& nomGraphe, bool opte, bool optt, bool optg, int h) : optionE(opte), optionT(optt), optionG(optg), heure(h)
 // Algorithme :
-//
+// Effectuer une lecture ligne par ligne du fichier .log
+// Demarrer le decomptage du nombre de hits
+// Creer un fichier .dot pour le graphe si optionG est vraie
 {
 #ifdef MAP
     cout << "Appel au constructeur spécifique de <Manager>" << endl;
 #endif
 	lec = new Lecteur(nomFic);
+	compt = new Compteur(); 
 	//Premier cas de figure: L'option graphe n'est pas activee
 	if (!optionG)
 	{
-		
-		compt = new Compteur();
 		graph = NULL;
 	}
 	//Deuxieme cas de figure: L'option graphe est activee
 	else 
 	{
-		compt = new Compteur();
-		//compt = NULL;
 		graph = new Graphe (nomGraphe);
 	}
 	

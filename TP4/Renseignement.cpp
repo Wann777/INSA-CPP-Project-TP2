@@ -24,7 +24,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-const string Renseignement::getCible ()
+const string& Renseignement::getCible ()
 
 // Algorithme :
 //
@@ -32,7 +32,7 @@ const string Renseignement::getCible ()
     return cible;
 } //----- Fin de Méthode
 
-string& Renseignement::getReferer ()
+const string& Renseignement::getReferer ()
 
 // Algorithme :
 //
@@ -40,18 +40,8 @@ string& Renseignement::getReferer ()
     return referer;
 } //----- Fin de Méthode
 
-void Renseignement::getMoment()
-{
-    cout<<unMoment.date<<endl;
-    cout<<unMoment.mois<<endl;
-    cout<<unMoment.an<<endl;
-    cout<<unMoment.heure<<endl;
-    cout<<unMoment.minute<<endl;
-    cout<<unMoment.seconde<<endl;
-    cout<<unMoment.decalage<<endl;
-}
 
-const string Renseignement::getHeure ()
+const string& Renseignement::getHeure ()
 
 // Algorithme :
 //
@@ -104,6 +94,10 @@ Renseignement::~Renseignement ( )
 //----------------------------------------------------- Méthodes protégées
 void Renseignement::makeMomentPrecis (const string& moment)
 {
+// Algorithme :
+// A partir une chaine de caractere qui designe le moment de consultation
+// on la decompose en elements plus precis de la structure MOMENT(date, mois, heure,..)
+	
     stringstream ss;
     ss.str(moment);
     getline (ss, unMoment.date, '/');

@@ -19,10 +19,10 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-typedef map<string,int> refMap;
+typedef map<string,int> refMap; //la map pour <referer,hits>
 //------------------------------------------------------------------------
 // Rôle de la classe <Graphe>
-//
+// Creer le fichier .dot
 //
 //------------------------------------------------------------------------
 
@@ -38,8 +38,15 @@ public:
     // Contrat :
     //
     void Ajouter(Renseignement * r);
-    void Afficher(void);
+    // Mode d'emploi :
+    // Ajouter l'objet de type Renseignement dans la struc Tgraphe
+    // Contrat : Pointeur est non null
+    //
     void CreerFicDot();
+     // Mode d'emploi :
+    //Creer le fichier dot a partir de l'attribut logGraphe
+    // Contrat : rien
+    //
 
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -79,7 +86,7 @@ protected:
     	typedef map<string,refMap> Tgraphe;
     	typedef set<string> Tnoeud;
     	Tgraphe logGraphe;
-    	Tnoeud listeN;
+    	Tnoeud listeN; //stocker les noeuds du graphe
     	string nomFicDot;
     	
 

@@ -26,7 +26,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Manager>
-//
+// Gerer les options de lecture / Appliquer les filtres
 //
 //------------------------------------------------------------------------
 
@@ -44,7 +44,8 @@ public:
     void Execution(void);
     
     // Mode d'emploi :
-    //
+    // Faire une lecture globale du fichier .log et ajouter l'objet de type Renseignement 
+    // dans le Compteur (et le Graphe)
     // Contrat :
     //
 
@@ -63,7 +64,7 @@ public:
 
     Manager (const string& nomFic, const string& nomGraphe, bool opte, bool optt, bool optg, int h);
     // Mode d'emploi :
-    //
+    // implementer les filtres du fichier .log nomme nomFic a partir de commande -g -e -t saisie par l'utilisateur
     // Contrat :
     //
 

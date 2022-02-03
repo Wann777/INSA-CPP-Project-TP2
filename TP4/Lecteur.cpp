@@ -30,6 +30,11 @@ using namespace std;
 //} //----- Fin de Méthode
 Renseignement* Lecteur::LireLigne( void )
 {
+// Algorithme :
+// Recuperer les informations utiles pour construire l'objet de type Renseignement
+// en utilisants des delimiteurs ], / et "
+// si la cible contient intranet..., on l'enleve
+	
 	string ligne, date, inutile,cible,referer;
 	stringstream ss;
 	if(ifsNomFic.peek()!=EOF)
