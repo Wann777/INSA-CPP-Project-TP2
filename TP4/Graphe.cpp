@@ -34,7 +34,7 @@ void Graphe::Ajouter(Renseignement * r)
 // Algorithme : Etape par etape
 
 	// Etape 1: Ajouter la cible et le referer dans la liste de Noeuds
-	// le conteneur set nous aide a supprimer les doublons
+	// le conteneur de type Set nous aide a supprimer les doublons
 	
 	string cle = r->getCible();
 	string refAChercher = r->getReferer();
